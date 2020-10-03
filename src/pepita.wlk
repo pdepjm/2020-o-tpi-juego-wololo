@@ -7,7 +7,7 @@ object pepita {
 	}
 
 	method image() {
-		return "pepita.png"
+		return "assets/Autos/auto rojo.png"
 	}
 
 }
