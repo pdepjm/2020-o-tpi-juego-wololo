@@ -2,8 +2,8 @@ import wollok.game.*
 
 object autoRojo {
 	var choques = 0
-	var posicion = game.at(2, 2)
-	var imagen = "Autos/auto rojo.png"
+	var posicion = game.at(5, 0)
+	var imagen = "assets/Car_1_Main_Positions/Car_1_01 copia.png"
 
 	method position() = posicion
 

@@ -1,46 +1,53 @@
 import wollok.game.*
 import autos.*
 import obstaculos.*
+import escenario.*
 
 object juego {
 
 	method iniciar() {
 		self.configurarJuego()
-		self.agregarAutos()
+		game.boardGround("assets/Fondo/pasto.jpg")
+		self.agregarPista()
 		self.agregarObstaculos()
+		self.agregarAutos()
 		self.configurarTeclas()
 		self.configurarAcciones()
+		
 		game.start()
 	}
 
 	method configurarJuego() {
 		game.title("Nombre juego")
-		game.width(50)
-		game.height(50)
+		game.width(20)
+		game.height(20)
 	}
 
 	method agregarAutos() {
 		game.addVisual(autoRojo)
 	}
-	
-	method agregarObstaculos() {
+	method agregarPista()
+	{
+		game.addVisual(pista)
+	}
+ 	method agregarObstaculos() {
 		game.addVisual(piedra)
-		game.addVisual(planta)
+		/*game.addVisual(planta)
 		game.addVisual(comienzo)
 		game.addVisual(aceite)
-		game.addVisual(barril)
+		game.addVisual(barril)*/
 	}
 
 	method configurarTeclas() {
-		keyboard.up().onPressDo({ autoRojo.moverseA(autoRojo.position().up(1))})
-		keyboard.down().onPressDo({ autoRojo.moverseA(autoRojo.position().down(1))})
+		keyboard.up().onPressDo({ autoRojo.moverseA(autoRojo.position().up(1)) pista.position(pista.position().down(1))})
+		keyboard.down().onPressDo({ autoRojo.moverseA(autoRojo.position().down(1)) pista.position(pista.position().up(1))})
 		keyboard.left().onPressDo({ autoRojo.moverseA(autoRojo.position().left(1))})
 		keyboard.right().onPressDo({ autoRojo.moverseA(autoRojo.position().right(1))})
 		
 	}
 	
 	method configurarAcciones() {
-		game.onCollideDo(autoRojo, { visualColisionado => visualColisionado.choque(autoRojo)})
+		game.whenCollideDo(autoRojo, { visualColisionado => visualColisionado.choque(autoRojo)})
 	}
 
 }

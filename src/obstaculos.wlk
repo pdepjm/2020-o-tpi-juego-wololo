@@ -4,7 +4,7 @@ import autos.*
 object piedra {
 
 	const posicion = game.at(6, 7)
-	const imagen = "Decor/Rock.png"
+	const imagen = "Decor/piedra.png"
 
 	method position() = posicion
 
@@ -15,7 +15,7 @@ object piedra {
 		unAuto.destruirse()
 	}
 
-} 
+} /* 
 object planta {
 	const posicion = game.at(40, 20)
 	const imagen = "Decor/Tree.png"
@@ -70,4 +70,4 @@ object aceite {
 		unAuto.destruirse()
 	}
 
-} 
+}*/ 
