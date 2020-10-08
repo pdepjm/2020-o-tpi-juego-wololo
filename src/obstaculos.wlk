@@ -15,9 +15,9 @@ object piedra {
 		unAuto.destruirse()
 	}
 
-} /* 
+} 
 object planta {
-	const posicion = game.at(40, 20)
+	const posicion = game.at(7, 15)
 	const imagen = "Decor/Tree.png"
 
 	method position() = posicion
@@ -28,6 +28,7 @@ object planta {
 		unAuto.destruirse()
 	}
 }
+/*
 
 object barril {
 	const posicion = game.at(5, 30)

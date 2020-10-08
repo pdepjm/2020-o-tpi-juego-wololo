@@ -32,22 +32,23 @@ object juego {
 	}
  	method agregarObstaculos() {
 		game.addVisual(piedra)
-		/*game.addVisual(planta)
-		game.addVisual(comienzo)
+		game.addVisual(planta)
+		/*game.addVisual(comienzo)
 		game.addVisual(aceite)
 		game.addVisual(barril)*/
 	}
 
 	method configurarTeclas() {
-		keyboard.up().onPressDo({ autoRojo.moverseA(autoRojo.position().up(1)) pista.position(pista.position().down(1))})
-		keyboard.down().onPressDo({ autoRojo.moverseA(autoRojo.position().down(1)) pista.position(pista.position().up(1))})
+		keyboard.up().onPressDo({ autoRojo.moverseA(autoRojo.position().up(1)) })
+		keyboard.down().onPressDo({ autoRojo.moverseA(autoRojo.position().down(1))})
 		keyboard.left().onPressDo({ autoRojo.moverseA(autoRojo.position().left(1))})
 		keyboard.right().onPressDo({ autoRojo.moverseA(autoRojo.position().right(1))})
 		
 	}
 	
 	method configurarAcciones() {
-		game.whenCollideDo(autoRojo, { visualColisionado => visualColisionado.choque(autoRojo)})
+		game.onCollideDo(autoRojo, { visualColisionado => visualColisionado.choque(autoRojo)})
+		game.onTick(90, "movimiento pista", {pista.position(pista.position().down(1))})
 	}
 
 }
