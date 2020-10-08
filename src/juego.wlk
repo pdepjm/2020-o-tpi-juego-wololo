@@ -21,11 +21,14 @@ object juego {
 
 	method agregarAutos() {
 		game.addVisual(autoRojo)
-		game.addVisual(autoNegro)
 	}
 	
 	method agregarObstaculos() {
 		game.addVisual(piedra)
+		game.addVisual(planta)
+		game.addVisual(comienzo)
+		game.addVisual(aceite)
+		game.addVisual(barril)
 	}
 
 	method configurarTeclas() {
@@ -33,11 +36,11 @@ object juego {
 		keyboard.down().onPressDo({ autoRojo.moverseA(autoRojo.position().down(1))})
 		keyboard.left().onPressDo({ autoRojo.moverseA(autoRojo.position().left(1))})
 		keyboard.right().onPressDo({ autoRojo.moverseA(autoRojo.position().right(1))})
+		
 	}
 	
 	method configurarAcciones() {
 		game.onCollideDo(autoRojo, { visualColisionado => visualColisionado.choque(autoRojo)})
-		game.onCollideDo(autoNegro, { visualColisionado => visualColisionado.choque(autoNegro)})		
 	}
 
 }
