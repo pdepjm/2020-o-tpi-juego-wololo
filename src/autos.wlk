@@ -32,3 +32,20 @@ object autoRojo {
 
 }
 
+object bloque {
+	var posicion = game.at(10, 0)
+	var imagen = "muro.png"
+	var limiteDer = 5
+	var limiteIz = 14
+	method position() = posicion
+
+	method image() = imagen
+	
+	method moverseA(nuevaPosicion) {
+		const x = nuevaPosicion.x()
+		if(x >= limiteDer and x <= limiteIz){
+			posicion = nuevaPosicion
+		}
+	}
+	
+}

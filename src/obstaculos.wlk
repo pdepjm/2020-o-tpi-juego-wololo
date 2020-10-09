@@ -1,7 +1,30 @@
 import wollok.game.*
 import autos.*
 
-object piedra {
+class Piedra inherits Obstaculo{
+	method choque(unAuto) {
+		//frenar
+		unAuto.destruirse()
+	}
+
+}
+class Obstaculo {
+	var position
+	var nombre 
+	method position() = position
+	method position(nuevaPosicion){
+		position = nuevaPosicion
+	}
+	method image() = "Decor/" + nombre +".png"
+	
+}
+class Planta inherits Obstaculo{
+	method choque(unAuto) {
+		//frenar
+		unAuto.destruirse()
+	}
+}
+/*object piedra {
 
 	const posicion = game.at(6, 7)
 	const imagen = "Decor/piedra.png"
@@ -15,8 +38,8 @@ object piedra {
 		unAuto.destruirse()
 	}
 
-} 
-object planta {
+} */
+/*object planta {
 	const posicion = game.at(7, 15)
 	const imagen = "Decor/Tree.png"
 
@@ -27,7 +50,7 @@ object planta {
 	method choque(unAuto) {
 		unAuto.destruirse()
 	}
-}
+}*/
 /*
 
 object barril {
