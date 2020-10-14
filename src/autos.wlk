@@ -1,6 +1,6 @@
 import wollok.game.*
 
-object autoRojo {
+/*object autoRojo {
 	var choques = 0
 	var posicion = game.at(5, 0)
 	var imagen = "assets/Car_1_Main_Positions/Car_1_01 copia.png"
@@ -30,13 +30,14 @@ object autoRojo {
 	
 	}
 
-}
+}*/
 
-object bloque {
+object autoRojo {
+	var choques = 0
 	var posicion = game.at(10, 0)
-	var imagen = "muro.png"
+	var imagen = "assets/Car_1_Main_Positions/Car_1_01 copia.png"
 	var limiteDer = 5
-	var limiteIz = 14
+	var limiteIz = 13
 	method position() = posicion
 
 	method image() = imagen
@@ -47,5 +48,24 @@ object bloque {
 			posicion = nuevaPosicion
 		}
 	}
+	
+	
+	method destruirse() {
+		choques = choques + 1
+		if (choques == 1) {
+			imagen = "Car_1_Main_Positions/Car_1_02.png"
+		}else if (choques == 2){
+			imagen = "Car_1_Main_Positions/Car_1_03.png"
+		}else if (choques == 3){
+			imagen = "Car_1_Main_Positions/Car_1_04.png"
+		}else if (choques == 4){
+			imagen = "Car_1_Main_Positions/Car_1_05.png"
+		game.say(self,"Perdiste")
+		game.schedule(5000, { game.stop()})
+		}
+		
+	
+	}
+	
 	
 }

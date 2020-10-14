@@ -26,7 +26,7 @@ object juego {
 	}
 
 	method agregarAutos() {
-		//game.addVisual(autoRojo)
+		game.addVisual(autoRojo)
 	}
 	method agregarPista()
 	{
@@ -35,7 +35,7 @@ object juego {
  	method agregarObstaculos() {
 		//game.addVisual(piedra)
 		//game.addVisual(planta)
-		game.addVisual(bloque)
+		//game.addVisual(bloque)
 		/*game.addVisual(comienzo)
 		game.addVisual(aceite)
 		game.addVisual(barril)*/
@@ -43,21 +43,21 @@ object juego {
 	}
 
 	method configurarTeclas() {
-		//keyboard.up().onPressDo({ autoRojo.moverseA(autoRojo.position().up(1)) })
-		//keyboard.down().onPressDo({ autoRojo.moverseA(autoRojo.position().down(1))})
-		//keyboard.left().onPressDo({ autoRojo.moverseA(autoRojo.position().left(1))})
-		//keyboard.right().onPressDo({ autoRojo.moverseA(autoRojo.position().right(1))})
-		keyboard.up().onPressDo({ bloque.moverseA(bloque.position().up(1)) })
+		keyboard.up().onPressDo({ autoRojo.moverseA(autoRojo.position().up(1)) })
+		keyboard.down().onPressDo({ autoRojo.moverseA(autoRojo.position().down(1))})
+		keyboard.left().onPressDo({ autoRojo.moverseA(autoRojo.position().left(1))})
+		keyboard.right().onPressDo({ autoRojo.moverseA(autoRojo.position().right(1))})
+		/*keyboard.up().onPressDo({ bloque.moverseA(bloque.position().up(1)) })
 		keyboard.down().onPressDo({ bloque.moverseA(bloque.position().down(1))})
 		keyboard.left().onPressDo({ bloque.moverseA(bloque.position().left(1))})
-		keyboard.right().onPressDo({ bloque.moverseA(bloque.position().right(1))})
+		keyboard.right().onPressDo({ bloque.moverseA(bloque.position().right(1))})*/
 		
 	}
 	
 	method configurarAcciones() {
 		//game.onCollideDo(autoRojo, { visualColisionado => visualColisionado.choque(autoRojo)})
-		game.onTick(1000, "movimiento pista", {pista.position(pista.position().down(1))})
-		game.onTick(5000, "crear obstaculo", {
+		game.onTick(100, "movimiento pista", {pista.position(pista.position().down(1))})
+		game.onTick(1000, "crear obstaculo", {
 		  	/*var obstaculo = obstaculosPosibles.get(1)
 		  	listaObstaculos.add(obstaculo)
 		  	game.addVisual(obstaculo)*/
@@ -65,9 +65,12 @@ object juego {
 			listaObstaculos.add(piedra)
 			game.addVisual(piedra)
 		})
-		game.onTick(1000, "Mover obstaculos", {
+		game.onTick(100, "Mover obstaculos", {
 			listaObstaculos.forEach({objeto => objeto.position(objeto.position().down(1))})
 		})
+		
+		game.whenCollideDo(autoRojo, {objeto=>objeto.choque(autoRojo)})
+		
 	}
 }
 
