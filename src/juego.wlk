@@ -3,10 +3,8 @@ import autos.*
 import obstaculos.*
 import escenario.*
 
-const obstaculosPosibles = [new Piedra(position = game.at(5.randomUpTo(14), 19),nombre = "piedra"),new Planta(position = game.at(5.randomUpTo(14), 19),nombre = "Tree")]
 
 object juego {
-	const listaObstaculos = []
 	method iniciar() {
 		self.configurarJuego()
 		game.boardGround("assets/Fondo/pasto.jpg")
@@ -58,19 +56,15 @@ object juego {
 		//game.onCollideDo(autoRojo, { visualColisionado => visualColisionado.choque(autoRojo)})
 		game.onTick(100, "movimiento pista", {pista.position(pista.position().down(1))})
 		game.onTick(1000, "crear obstaculo", {
-		  	/*var obstaculo = obstaculosPosibles.get(1)
-		  	listaObstaculos.add(obstaculo)
-		  	game.addVisual(obstaculo)*/
-			var piedra = new Piedra(position = game.at(5.randomUpTo(14), 19),nombre="piedra")
-			listaObstaculos.add(piedra)
-			game.addVisual(piedra)
+			pista.crearObstaculo()
 		})
 		game.onTick(100, "Mover obstaculos", {
-			listaObstaculos.forEach({objeto => objeto.position(objeto.position().down(1))})
+			pista.moverObstaculos()
+			
+		})	
+		game.whenCollideDo(autoRojo, {objeto=>objeto.choque(autoRojo)
+			pista.obstaculos().remove(objeto)
 		})
-		
-		game.whenCollideDo(autoRojo, {objeto=>objeto.choque(autoRojo)})
-		
 	}
 }
 

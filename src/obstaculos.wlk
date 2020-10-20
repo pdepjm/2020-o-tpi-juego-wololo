@@ -3,26 +3,45 @@ import autos.*
 
 class Piedra inherits Obstaculo{
 	method choque(unAuto) {
-		//frenar
+		game.removeVisual(self)
 		unAuto.destruirse()
+	}
+	method destruccion(){
+		
 	}
 
 }
 class Obstaculo {
 	var position
-	var nombre 
+	const nombre 
 	method position() = position
 	method position(nuevaPosicion){
 		position = nuevaPosicion
 	}
 	method image() = "Decor/" + nombre +".png"
+	method estaFuera() = self.position().y() < 5 // aca seria si es <= 0 para borrarlo y liberar memoria (no lo tengo muy en claro)
 	
 }
 class Planta inherits Obstaculo{
 	method choque(unAuto) {
 		//frenar
-		unAuto.destruirse()
+		//unAuto.destruirse()
 	}
+}
+
+class Aceite inherits Obstaculo{
+	
+	method choque(unAuto) {
+		//unAuto.destruirse()
+	}
+
+}
+class Barril inherits Obstaculo{
+	
+	method choque(unAuto) {
+		//unAuto.destruirse()
+	}
+
 }
 /*object piedra {
 
