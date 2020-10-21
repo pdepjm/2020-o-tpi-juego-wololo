@@ -26,9 +26,10 @@ object autoRojo {
 		//game.say(self,"Perdiste")
 		game.schedule(5000, { game.stop()})
 		}
-		
-	
 	}
+
+method acelerarse(){}
+method frenarse(){}
 
 }
 

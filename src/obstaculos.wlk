@@ -1,49 +1,47 @@
 import wollok.game.*
 import autos.*
 
-object piedra {
+class Obstaculos{
+	var position 
+	var imagen
 
-	const posicion = game.at(6, 7)
-	const imagen = "Decor/piedra.png"
+	method imagen() = imagen
+	method position() = position
 
-	method position() = posicion
+}
 
-	method image() = imagen
-	
-	method choque(unAuto) {
-		//frenar
-		unAuto.destruirse()
-	}
-
-} /* 
-object planta {
-	const posicion = game.at(40, 20)
-	const imagen = "Decor/Tree.png"
-
-	method position() = posicion
-
-	method image() = imagen
-	
+class Destructivo inherits Obstaculos{
 	method choque(unAuto) {
 		unAuto.destruirse()
 	}
 }
 
-object barril {
-	const posicion = game.at(5, 30)
-	const imagen = "Game_Props_Items/Barrel_01.png"
-
-	method position() = posicion
-
-	method image() = imagen
-	
-	method choque(unAuto) {
-		unAuto.destruirse()
+class Inactivo inherits Obstaculos {
+	method choque(unAuto){
+		
 	}
-
-	
 }
 
+class Desacelerador inherits Obstaculos{
+	method choque(unAuto){
+		unAuto.frenarse()
+	}
+}
+
+class Acelerador inherits Obstaculos{
+	method choque(unAuto){
+		unAuto.acelerarse()
+	}
+} 
+object piedra inherits Destructivo {
+	
+   method crear() =  new Destructivo(imagen ="Decor/piedra.png", position = game.at(6, 7) )
+}
+/* 
+class Planta inherits Obstaculos {
+	const planta = new Destructivos(imagen ="Decor/Tree.png" , posicion = game.at(40, 20) )
+}
+ 
 object comienzo{
 	const posicion = game.at(5, 5)
 	const imagen = "Decor/Start.png"
@@ -70,4 +68,4 @@ object aceite {
 		unAuto.destruirse()
 	}
 
-}*/ 
+*/

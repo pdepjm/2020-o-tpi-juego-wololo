@@ -31,11 +31,12 @@ object juego {
 		game.addVisual(pista)
 	}
  	method agregarObstaculos() {
-		game.addVisual(piedra)
+ 		//const piedra = new Destructivo(imagen ="Decor/piedra.png", position = game.at(6, 7))
+		game.addVisual(piedra.crear())
 		/*game.addVisual(planta)
 		game.addVisual(comienzo)
 		game.addVisual(aceite)
-		game.addVisual(barril)*/
+		*/
 	}
 
 	method configurarTeclas() {
