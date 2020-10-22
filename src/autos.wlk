@@ -55,7 +55,20 @@ object autoRojo {
 	
 }
 
-
+object colisionAuto {
+	var posicion = game.at(autoRojo.position().x()+1, autoRojo.position().y()+4)
+	var imagen = "assets/Decor/colision.png"
+	method position() = posicion
+	method image() = imagen
+	method moverseA(nuevaPosicion) {
+		const x = nuevaPosicion.x()
+		if(x >= pista.limiteDer()+1 and x <= pista.limiteIz()+1){
+			posicion = nuevaPosicion
+		}
+	}
+	
+	
+}
 object camion {
 
 	var posicion = game.at(10, 2)

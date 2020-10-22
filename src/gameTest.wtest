@@ -1,0 +1,44 @@
+import wollok.game.*
+import autos.*
+import obstaculos.*
+
+describe "RACE" {
+	const piedra = new Piedra(position = game.at(0,1), nombre = "piedra")
+	const barril= new Barril(position = game.at(0,1), nombre = "Barril")
+	const planta = new Planta(position = game.at(0,1), nombre = "Tree")
+	const meta = new Meta(posicion=game.at(0,1))
+	fixture {
+		game.clear() 
+		game.addVisual(autoRojo)
+		game.addVisual(piedra)
+		game.addVisual(barril)
+		
+	}
+	
+	test "Auto choca con una piedra" 
+	{
+     autoRojo.moverseA(game.at(0, 1))
+     piedra.choque(autoRojo)
+	 assert.equals("Car_1_Main_Positions/Car_1_02.png", autoRojo.image())
+  	}
+	test "Auto choca con un barril" 
+	{
+     autoRojo.moverseA(game.at(0, 1))
+     barril.choque(autoRojo)
+	 assert.equals("Car_1_Main_Positions/Car_1_03.png", autoRojo.image())
+  	}
+	
+	test "Auto choca con una planta" 
+	{
+     autoRojo.moverseA(game.at(0, 1))
+     planta.choque(autoRojo)
+	 assert.equals("assets/Car_1_Main_Positions/Car_1_01 copia.png", autoRojo.image())
+  	}
+  	/*test "Auto choca con la meta" 
+	{
+     autoRojo.moverseA(game.at(0, 1))
+     meta.choque(autoRojo)
+	 assert.equals("assets/Car_1_Main_Positions/Car_1_01 copia.png", autoRojo.image())
+  	}*/
+}
+

@@ -6,6 +6,17 @@ import escenario.*
 
 
 object juego {
+	const meta =new Meta(posicion=game.at(4, 440),imagen="assets/Decor/Finish_3.png")
+	const colisionMeta= new Meta(posicion=game.at(5, 440),imagen="assets/Decor/colision.png")
+	const colisionMeta1= new Meta(posicion=game.at(6, 440),imagen="assets/Decor/colision.png")
+	const colisionMeta2= new Meta(posicion=game.at(7, 440),imagen="assets/Decor/colision.png")
+	const colisionMeta3= new Meta(posicion=game.at(8, 440),imagen="assets/Decor/colision.png")
+	const colisionMeta4= new Meta(posicion=game.at(9, 440),imagen="assets/Decor/colision.png")
+	const colisionMeta5= new Meta(posicion=game.at(10, 440),imagen="assets/Decor/colision.png")
+	const colisionMeta6= new Meta(posicion=game.at(11, 440),imagen="assets/Decor/colision.png")
+	const colisionMeta7= new Meta(posicion=game.at(12, 440),imagen="assets/Decor/colision.png")
+	const colisionMeta8= new Meta(posicion=game.at(13, 440),imagen="assets/Decor/colision.png")
+	const colisionMeta9= new Meta(posicion=game.at(13, 440),imagen="assets/Decor/colision.png")
 	method iniciar() {
 		self.configurarJuego()
 		game.boardGround("assets/Fondo/pasto.jpg")
@@ -26,6 +37,7 @@ object juego {
 
 	method agregarAutos() {
 		game.addVisual(autoRojo)
+		game.addVisual(colisionAuto)
 		//game.addVisual(camion)
 		}
 	method agregarPista()
@@ -33,20 +45,25 @@ object juego {
 		game.addVisual(pista)
 	}
  	method agregarObstaculos() {
- 		//game.addVisual(Piedra)
-		//game.addVisual(planta)
-		//game.addVisual(bloque)
-		/*game.addVisual(comienzo)
-		game.addVisual(aceite)
-		game.addVisual(barril)*/
+ 		game.addVisual(meta)
+		game.addVisual(colisionMeta)
+		game.addVisual(colisionMeta1)
+		game.addVisual(colisionMeta2)
+		game.addVisual(colisionMeta3)
+		game.addVisual(colisionMeta4)
+		game.addVisual(colisionMeta5)
+		game.addVisual(colisionMeta6)
+		game.addVisual(colisionMeta7)
+		game.addVisual(colisionMeta8)
+		game.addVisual(colisionMeta9)
 		
 	}
 
 	method configurarTeclas() {
 		//keyboard.up().onPressDo({ autoRojo.moverseA(autoRojo.position().up(1)) })
 		//keyboard.down().onPressDo({ autoRojo.moverseA(autoRojo.position().down(1))})
-		keyboard.left().onPressDo({ autoRojo.moverseA(autoRojo.position().left(1))})
-		keyboard.right().onPressDo({ autoRojo.moverseA(autoRojo.position().right(1))})
+		keyboard.left().onPressDo({ autoRojo.moverseA(autoRojo.position().left(1)) colisionAuto.moverseA(colisionAuto.position().left(1))})
+		keyboard.right().onPressDo({ autoRojo.moverseA(autoRojo.position().right(1)) colisionAuto.moverseA(colisionAuto.position().right(1)) })
 		/*keyboard.up().onPressDo({ bloque.moverseA(bloque.position().up(1)) })
 		keyboard.down().onPressDo({ bloque.moverseA(bloque.position().down(1))})
 		keyboard.left().onPressDo({ bloque.moverseA(bloque.position().left(1))})
@@ -55,24 +72,23 @@ object juego {
 	}
 	
 	method configurarAcciones() {
-		game.onCollideDo(autoRojo, { visualColisionado => visualColisionado.choque(autoRojo)})
+		//game.onCollideDo(autoRojo, { visualColisionado => visualColisionado.choque(autoRojo)})
 		//game.onCollideDo(camion, { visualColisionado2 => visualColisionado2.choque(camion)})
-		game.onTick(100, "movimiento pista", {pista.position(pista.position().down(1))})
+		game.onTick(100, "movimiento pista", {pista.position(pista.position().down(1))
+			meta.position(meta.position().down(1)) colisionMeta.position(colisionMeta.position().down(1)) 
+			colisionMeta1.position(colisionMeta1.position().down(1)) colisionMeta2.position(colisionMeta2.position().down(1))
+			colisionMeta3.position(colisionMeta3.position().down(1)) colisionMeta4.position(colisionMeta4.position().down(1))
+			colisionMeta5.position(colisionMeta5.position().down(1)) colisionMeta6.position(colisionMeta6.position().down(1))
+			colisionMeta7.position(colisionMeta7.position().down(1)) colisionMeta8.position(colisionMeta8.position().down(1)) 
+			colisionMeta9.position(colisionMeta9.position().down(1)) 
+		} )
 		game.onTick(1000, "crear obstaculo", {
 			pista.crearObstaculo()
 			
 		
 		})
-		game.onTick(100, "Mover obstaculos", {
-			pista.moverObstaculos()
-			
-		})	
-		game.whenCollideDo(autoRojo, {objeto=>objeto.choque(autoRojo)
-			pista.obstaculos().remove(objeto)
-		})
-		//game.whenCollideDo(autoRojo, {objeto=>objeto.choque(camion)
-		//	pista.obstaculos().remove(objeto)
-		//})
+		game.onTick(100, "Mover obstaculos", {pista.moverObstaculos()})	
+		game.whenCollideDo(colisionAuto, {objeto=>objeto.choque(autoRojo)})
 	}
 }
 
