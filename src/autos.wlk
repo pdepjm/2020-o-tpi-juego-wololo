@@ -78,7 +78,6 @@ object camion {
 	
 	method noAfectar(){}
 	
-<<<<<<< HEAD
 	method detenerse(){}
 	
 	method explotar(){
@@ -89,29 +88,7 @@ object camion {
 		} 
 	}
 	
-	}
-	
-=======
 }
 
-object camion {
-	
-	var posicion = game.at(10, 0)
-	const imagen = "camion.png"
-	method position() = posicion
 
-	method image() = imagen
-	
-	method moverseA(nuevaPosicion) {
-		const x = nuevaPosicion.x()
-		if(x >= pista.limiteDer() and x <= pista.limiteIz()){
-			posicion = nuevaPosicion
-		}
-	}
-	
-	
-	method destruirse() {
-		//No choca con piedras
-	}
-}
->>>>>>> branch 'master' of https://github.com/pdepjm/2020-o-tpi-juego-wololo.git
+
