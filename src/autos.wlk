@@ -1,16 +1,28 @@
 import wollok.game.*
 import escenario.*
-/*class Vehiculo{
+class Vehiculo{
 	var posicion
-	var imagen
-	
-}*/
-
-object autoRojo {
-	var choques = 0
-	var posicion = game.at(10, 2)
-	var imagen = "assets/Car_1_Main_Positions/Car_1_01 copia.png"
+	var imagen 
 	method position() = posicion
+	method imagen() = imagen
+	
+	method moverseA(nuevaPosicion) {
+		const x = nuevaPosicion.x()
+		if(x >= pista.limiteDer() and x <= pista.limiteIz()){
+			posicion = nuevaPosicion
+		}
+	}
+}
+
+object autoRojo inherits Vehiculo {
+	var choques = 0
+	
+	method crearAuto(){
+	posicion = game.at(10, 2)
+	imagen = "assets/Car_1_Main_Positions/Car_1_01 copia.png"
+	
+	}
+	/*method position() = posicion
 
 	method image() = imagen
 	
@@ -19,7 +31,7 @@ object autoRojo {
 		if(x >= pista.limiteDer() and x <= pista.limiteIz()){
 			posicion = nuevaPosicion
 		}
-	}
+	}*/
 	
 	method choques() = choques
 	
@@ -34,6 +46,12 @@ object autoRojo {
         self.controlChoques()
   
 	}
+	
+	method gana(){
+		game.say(self,"¡¡Ganaste!!")
+		game.schedule(500, { game.stop()})
+	}
+	
 	method controlChoques(){
 		if (choques == 1) {
 			imagen = "Car_1_Main_Positions/Car_1_02.png"
@@ -55,20 +73,16 @@ object autoRojo {
 	
 }
 
-object colisionAuto {
-	var posicion = game.at(autoRojo.position().x()+1, autoRojo.position().y()+4)
-	var imagen = "assets/Decor/colision.png"
-	method position() = posicion
-	method image() = imagen
-	method moverseA(nuevaPosicion) {
-		const x = nuevaPosicion.x()
-		if(x >= pista.limiteDer()+1 and x <= pista.limiteIz()+1){
-			posicion = nuevaPosicion
-		}
+object colision inherits Vehiculo{
+	method crearColision(vehiculo,posX,posY){
+	posicion = game.at(vehiculo.position().x()+1, vehiculo.position().y()+4)
+	imagen = "assets/Decor/colision.png"		
 	}
-	
-	
 }
+
+
+	
+	
 object camion {
 
 	var posicion = game.at(10, 2)

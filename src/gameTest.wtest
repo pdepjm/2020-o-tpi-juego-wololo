@@ -19,20 +19,20 @@ describe "RACE" {
 	{
      autoRojo.moverseA(game.at(0, 1))
      piedra.choque(autoRojo)
-	 assert.equals("Car_1_Main_Positions/Car_1_02.png", autoRojo.image())
+	 assert.equals("Car_1_Main_Positions/Car_1_02.png", autoRojo.imagen())
   	}
 	test "Auto choca con un barril" 
 	{
      autoRojo.moverseA(game.at(0, 1))
      barril.choque(autoRojo)
-	 assert.equals("Car_1_Main_Positions/Car_1_03.png", autoRojo.image())
+	 assert.equals("Car_1_Main_Positions/Car_1_03.png", autoRojo.imagen())
   	}
 	
 	test "Auto choca con una planta" 
 	{
      autoRojo.moverseA(game.at(0, 1))
      planta.choque(autoRojo)
-	 assert.equals("assets/Car_1_Main_Positions/Car_1_01 copia.png", autoRojo.image())
+	 assert.equals("assets/Car_1_Main_Positions/Car_1_01 copia.png", autoRojo.imagen())
   	}
   	/*test "Auto choca con la meta" 
 	{
