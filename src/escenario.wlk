@@ -1,7 +1,9 @@
+import creadoresObstaculos.*
 import wollok.game.*
 import obstaculos.*
 import autos.*
-const obstaculosPosibles = ["destructivo","pacifico","explosivo","manipilador"]
+const obstaculosPosibles = [creadorPlanta,creadorPiedra,creadorBarril,creadorAceite]
+
 object pista {
 	const obstaculos = []
 	var contador = 0
@@ -47,16 +49,8 @@ object pista {
 	}
 	method choque(unAuto) {
 	}
-	method obstaculoAElegir(tipo){
-		if(tipo == "destructivo"){
-			obstaculo = new Piedra(position = game.at(5.randomUpTo(14), 19),nombre = "piedra")
-		}else if(tipo == "pacifico"){
-			obstaculo = new Planta(position = game.at(5.randomUpTo(14), 19),nombre = "Tree")
-		}else if(tipo == "explosivo"){
-			obstaculo = new Barril(position = game.at(5.randomUpTo(14), 19),nombre = "Barril")
-		}else if(tipo == "manipulador"){
-			obstaculo = new Aceite(position = game.at(5.randomUpTo(14), 19),nombre = "Aceite")
-		}	
+	method obstaculoAElegir(unCreador){
+		obstaculo = unCreador.crear()
 	}
 	method crearObstaculo(){
 		self.obstaculoAElegir(obstaculosPosibles.get(0.randomUpTo(4)))
