@@ -43,18 +43,20 @@ class Barril inherits Obstaculo{
 }
 class Meta
 {
-	var posicion = game.at(5, 440)
-	const imagen = "assets/Decor/colision.png"
-	method position() = posicion
+    const imagen = "assets/Decor/Finish_3.png"
+	var posicion = game.at(4, 440)
 	method position(nuevaPosicion) {
 		posicion= nuevaPosicion
-		
 		}
+		method position () = posicion
 	method image() = imagen
 	
 	method choque(unAuto) {
 		unAuto.gana()
-
-	}
+		
+		}
 }
+
+
+
 

@@ -20,7 +20,6 @@ object autoRojo inherits Vehiculo {
 	method crearAuto(){
 	posicion = game.at(10, 2)
 	imagen = "assets/Car_1_Main_Positions/Car_1_01 copia.png"
-	
 	}
 	/*method position() = posicion
 
@@ -74,18 +73,16 @@ object autoRojo inherits Vehiculo {
 }
 
 object colision inherits Vehiculo{
-	method crearColision(vehiculo,posX,posY){
-	posicion = game.at(vehiculo.position().x()+1, vehiculo.position().y()+4)
+	method crearColision(vehiculo,x,y){
+	posicion = game.at(vehiculo.position().x()+x, vehiculo.position().y()+y)
 	imagen = "assets/Decor/colision.png"		
 	}
 }
 
+object camion inherits Vehiculo {
+	var explosiones = 0
 
-	
-	
-object camion {
-
-	var posicion = game.at(10, 2)
+	/*var posicion = game.at(10, 2)
 	const imagen = "camion.png"
 	var explosiones = 0
 	method position() = posicion
@@ -97,6 +94,10 @@ object camion {
 		if(x >= pista.limiteDer() and x <= pista.limiteIz()){
 			posicion = nuevaPosicion
 		}
+	}*/
+	method crearCamion(){
+		posicion = game.at(10, 2)
+		imagen = "camion.png"
 	}
 
 

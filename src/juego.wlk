@@ -2,11 +2,12 @@ import wollok.game.*
 import autos.*
 import obstaculos.*
 import escenario.*
+import creadoresObstaculos.*
 
 
 object juego {
-	const meta =new Meta(posicion=game.at(4, 440),imagen="assets/Decor/Finish_3.png")
-	const colisionMeta= new Meta(posicion=game.at(5, 440),imagen="assets/Decor/colision.png")
+	const meta =creadorMeta.crearMeta()
+	const colisionMeta0= new Meta(posicion=game.at(5, 440),imagen="assets/Decor/colision.png")
 	const colisionMeta1= new Meta(posicion=game.at(6, 440),imagen="assets/Decor/colision.png")
 	const colisionMeta2= new Meta(posicion=game.at(7, 440),imagen="assets/Decor/colision.png")
 	const colisionMeta3= new Meta(posicion=game.at(8, 440),imagen="assets/Decor/colision.png")
@@ -25,7 +26,6 @@ object juego {
 		self.agregarAutos()
 		self.configurarTeclas()
 		self.configurarAcciones()
-		
 		game.start()
 	}
 
@@ -50,7 +50,7 @@ object juego {
 	}
  	method agregarObstaculos() {
  		game.addVisual(meta)
-		game.addVisual(colisionMeta)
+		game.addVisual(colisionMeta0)
 		game.addVisual(colisionMeta1)
 		game.addVisual(colisionMeta2)
 		game.addVisual(colisionMeta3)
@@ -74,15 +74,12 @@ object juego {
 		keyboard.right().onPressDo({ bloque.moverseA(bloque.position().right(1))})*/
 		
 	}
-	method colisionar(){
-		
-		
-	}
+
 	method configurarAcciones() {
 		//game.onCollideDo(autoRojo, { visualColisionado => visualColisionado.choque(autoRojo)})
 		//game.onCollideDo(camion, { visualColisionado2 => visualColisionado2.choque(camion)})
 		game.onTick(100, "movimiento pista", {pista.position(pista.position().down(1))
-			meta.position(meta.position().down(1)) colisionMeta.position(colisionMeta.position().down(1)) 
+			meta.position(meta.position().down(1))colisionMeta0.position(colisionMeta0.position().down(1)) 
 			colisionMeta1.position(colisionMeta1.position().down(1)) colisionMeta2.position(colisionMeta2.position().down(1))
 			colisionMeta3.position(colisionMeta3.position().down(1)) colisionMeta4.position(colisionMeta4.position().down(1))
 			colisionMeta5.position(colisionMeta5.position().down(1)) colisionMeta6.position(colisionMeta6.position().down(1))

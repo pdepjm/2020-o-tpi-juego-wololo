@@ -58,7 +58,9 @@ object pista {
 			obstaculos.add(obstaculo)
 			game.addVisual(obstaculo)
 		}
-		
+	}
+	
+	method crearMeta(){
 		
 	}
 	method moverObstaculos(){

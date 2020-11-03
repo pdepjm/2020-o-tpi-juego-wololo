@@ -1,5 +1,6 @@
 import wollok.game.*
 import obstaculos.*
+import obstaculos.*
 
 object creadorPiedra {
 	method crear() {
@@ -23,4 +24,9 @@ object creadorAceite {
 	method crear() {
 		return new Aceite(position = game.at(5.randomUpTo(14), 19),nombre = "Aceite")
 	}
+}
+
+object creadorMeta{
+	const meta =  new Meta(posicion=game.at(4, 440),imagen="assets/Decor/Finish_3.png")
+	method crearMeta() = meta
 }
