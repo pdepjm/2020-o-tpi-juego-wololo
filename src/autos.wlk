@@ -1,5 +1,7 @@
 import wollok.game.*
 import escenario.*
+import estadosAuto.*
+
 class Vehiculo{
 	var posicion
 	var imagen 
@@ -16,10 +18,15 @@ class Vehiculo{
 
 object autoRojo inherits Vehiculo {
 	var choques = 0
+	var estado = autoNuevo
 	
 	method crearAuto(){
 	posicion = game.at(10, 2)
 	imagen = "assets/Car_1_Main_Positions/Car_1_01 copia.png"
+	}
+	
+	method cambiarEstado(nuevoEstado) {
+		estado = nuevoEstado
 	}
 	/*method position() = posicion
 
@@ -36,12 +43,14 @@ object autoRojo inherits Vehiculo {
 	
 	method destruirse() {
 		choques = choques + 1
+		self.cambiarEstado(estado.proximoEstado())	
 		self.controlChoques()
 
 	}
 	
 	method explotar(){
         choques = choques +2
+        self.cambiarEstado(estado.proximoEstado().proximoEstado())
         self.controlChoques()
   
 	}
@@ -52,20 +61,12 @@ object autoRojo inherits Vehiculo {
 	}
 	
 	method controlChoques(){
-		if (choques == 1) {
-			imagen = "Car_1_Main_Positions/Car_1_02.png"
-		}else if (choques == 2){
-			imagen = "Car_1_Main_Positions/Car_1_03.png"
-			//game.say(self,"Te quedan 3 vidas")
-		}else if (choques == 3){
-			imagen = "Car_1_Main_Positions/Car_1_04.png"
-			//game.say(self,"Te quedan 2 vidas")
-		}else if (choques == 4){
+
+		if (choques == 4) {
 			//game.say(self,"Te queda 1 vidas")
-			imagen = "Car_1_Main_Positions/Car_1_05.png"
 			game.say(self,"Perdiste")
 			game.schedule(5000, { game.stop()})
-			}
+		}
 	} 
 	method detenerse(){}
 	method noAfectar(){}
