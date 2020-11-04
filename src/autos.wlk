@@ -20,9 +20,11 @@ object autoRojo inherits Vehiculo {
 	var choques = 0
 	var estado = autoNuevo
 	
+	override method imagen() = estado.imagen()
+	
 	method crearAuto(){
 	posicion = game.at(10, 2)
-	imagen = "assets/Car_1_Main_Positions/Car_1_01 copia.png"
+	imagen = estado.imagen()
 	}
 	
 	method cambiarEstado(nuevoEstado) {
