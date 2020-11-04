@@ -6,7 +6,7 @@ class Vehiculo{
 	var posicion
 	var imagen 
 	method position() = posicion
-	method imagen() = imagen
+	method image() = imagen
 	
 	method moverseA(nuevaPosicion) {
 		const x = nuevaPosicion.x()
@@ -20,7 +20,7 @@ object autoRojo inherits Vehiculo {
 	var choques = 0
 	var estado = autoNuevo
 	
-	override method imagen() = estado.imagen()
+	override method image() = estado.imagen()
 	
 	method crearAuto(){
 	posicion = game.at(10, 2)
