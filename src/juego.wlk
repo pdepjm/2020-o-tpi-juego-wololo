@@ -3,6 +3,7 @@ import autos.*
 import obstaculos.*
 import escenario.*
 import creadoresObstaculos.*
+import Menu.*
 
 
 object juego {
@@ -16,7 +17,7 @@ object juego {
 	const colisionMeta6= new Meta(posicion=game.at(11, 440),imagen="assets/Decor/colision.png")
 	const colisionMeta7= new Meta(posicion=game.at(12, 440),imagen="assets/Decor/colision.png")
 	const colisionMeta8= new Meta(posicion=game.at(13, 440),imagen="assets/Decor/colision.png")
-	const colisionMeta9= new Meta(posicion=game.at(13, 440),imagen="assets/Decor/colision.png")
+	//const colisionMeta9= new Meta(posicion=game.at(13, 440),imagen="assets/Decor/colision.png")
 	
 	method iniciar() {
 		self.configurarJuego()
@@ -26,7 +27,11 @@ object juego {
 		self.agregarAutos()
 		self.configurarTeclas()
 		self.configurarAcciones()
+		game.boardGround("assets/Setting/WindowNueva.png")
+		menu.iniciar()
 		game.start()
+		
+		
 	}
 
 	method configurarJuego() {
@@ -59,7 +64,7 @@ object juego {
 		game.addVisual(colisionMeta6)
 		game.addVisual(colisionMeta7)
 		game.addVisual(colisionMeta8)
-		game.addVisual(colisionMeta9)
+		//game.addVisual(colisionMeta9)
 		
 	}
 
@@ -84,15 +89,16 @@ object juego {
 			colisionMeta3.position(colisionMeta3.position().down(1)) colisionMeta4.position(colisionMeta4.position().down(1))
 			colisionMeta5.position(colisionMeta5.position().down(1)) colisionMeta6.position(colisionMeta6.position().down(1))
 			colisionMeta7.position(colisionMeta7.position().down(1)) colisionMeta8.position(colisionMeta8.position().down(1)) 
-			colisionMeta9.position(colisionMeta9.position().down(1)) 
+			//colisionMeta9.position(colisionMeta9.position().down(1)) 
 		} )
 		game.onTick(1000, "crear obstaculo", {
 			pista.crearObstaculo()
 			
 		
 		})
-		game.onTick(100, "Mover obstaculos", {pista.moverObstaculos()})	
+		game.onTick(100, "Mover obstaculos", {pista.obstaculo().moverObstaculos()})	
 		game.whenCollideDo(colision, {objeto=>objeto.choque(autoRojo)})
+		
 	}
 }
 

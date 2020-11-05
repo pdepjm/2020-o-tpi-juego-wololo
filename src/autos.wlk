@@ -67,7 +67,9 @@ object autoRojo inherits Vehiculo {
 			game.schedule(5000, { game.stop()})
 			}
 	} 
-	method detenerse(){}
+	method detenerse(){
+		
+	}
 	method noAfectar(){}
 	
 }
