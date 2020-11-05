@@ -19,6 +19,7 @@ class Vehiculo{
 
 object autoRojo inherits Vehiculo {
 	var choques = 0
+	var count =0
 	
 	
 	override method image() = estado.imagen()

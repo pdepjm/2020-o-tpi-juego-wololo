@@ -62,9 +62,6 @@ object pista {
 		}
 	}
 	
-	method crearMeta(){
-		
-	}
 	method moverObstaculos(){
 		if(obstaculos.any({objeto => objeto.estaFuera()}) ){
 			const obstaculoAEliminar = obstaculos.filter({objeto => objeto.estaFuera()}).first()
