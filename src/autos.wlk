@@ -4,7 +4,8 @@ import estadosAuto.*
 
 class Vehiculo{
 	var posicion
-	var imagen 
+	var estado = autoNuevo
+	var imagen = estado.imagen()
 	method position() = posicion
 	method image() = imagen
 	
@@ -18,7 +19,7 @@ class Vehiculo{
 
 object autoRojo inherits Vehiculo {
 	var choques = 0
-	var estado = autoNuevo
+	
 	
 	override method image() = estado.imagen()
 	
@@ -26,7 +27,7 @@ object autoRojo inherits Vehiculo {
 	posicion = game.at(10, 2)
 	imagen = estado.imagen()
 	}
-	
+
 	method cambiarEstado(nuevoEstado) {
 		estado = nuevoEstado
 	}
@@ -44,17 +45,22 @@ object autoRojo inherits Vehiculo {
 	method choques() = choques
 	
 	method destruirse() {
-		choques = choques + 1
+		
 		self.cambiarEstado(estado.proximoEstado())	
 		self.controlChoques()
 
 	}
 	
 	method explotar(){
-        choques = choques +2
-        self.cambiarEstado(estado.proximoEstado().proximoEstado())
+        
+        self.cambiarEstado(autoRoto)
         self.controlChoques()
   
+	}
+	method reparar()
+	{
+		self.cambiarEstado(estado.estadoAnterior())
+		self.controlChoques()
 	}
 	
 	method gana(){
@@ -64,7 +70,8 @@ object autoRojo inherits Vehiculo {
 	
 	method controlChoques(){
 
-		if (choques == 4) {
+		if (estado == autoRoto) 
+		{
 			//game.say(self,"Te queda 1 vidas")
 			game.say(self,"Perdiste")
 			game.schedule(5000, { game.stop()})
@@ -79,6 +86,12 @@ object colision inherits Vehiculo{
 	method crearColision(vehiculo,x,y){
 	posicion = game.at(vehiculo.position().x()+x, vehiculo.position().y()+y)
 	imagen = "assets/Decor/colision.png"		
+	}
+	override method moverseA(nuevaPosicion) {
+		const x = nuevaPosicion.x()
+		if(x >= pista.limiteDer()+1 and x <= pista.limiteIz()+1){
+			posicion = nuevaPosicion
+		}
 	}
 }
 

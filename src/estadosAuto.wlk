@@ -8,7 +8,7 @@ object autoNuevo {
 }
 
 object autoPrimerChoque {
-	const imagen = "assets/AutoRojo/AutoPrimerChoque.png"
+	const imagen = "assets/AutoRojo/AutoPrimerCoque.png"
 	const estadoAnterior = autoNuevo
 	const proximoEstado = autoChocado
 	method imagen() = imagen

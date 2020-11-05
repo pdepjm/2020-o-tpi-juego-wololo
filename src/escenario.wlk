@@ -2,7 +2,7 @@ import creadoresObstaculos.*
 import wollok.game.*
 import obstaculos.*
 import autos.*
-const obstaculosPosibles = [creadorPlanta,creadorPiedra,creadorBarril,creadorAceite]
+const obstaculosPosibles = [creadorPlanta,creadorPiedra,creadorBarril,creadorAceite,creadorVida]
 
 object pista {
 	const obstaculos = []
@@ -55,7 +55,7 @@ object pista {
 		obstaculo = unCreador.crear()
 	}
 	method crearObstaculo(){
-		self.obstaculoAElegir(obstaculosPosibles.get(0.randomUpTo(4)))
+		self.obstaculoAElegir(obstaculosPosibles.get(0.randomUpTo(5)))
 		if(not obstaculos.contains(obstaculo)){
 			obstaculos.add(obstaculo)
 			game.addVisual(obstaculo)
