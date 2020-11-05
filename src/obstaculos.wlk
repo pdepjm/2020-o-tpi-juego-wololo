@@ -50,6 +50,13 @@ class Barril inherits Obstaculo{
 }
 
 
+class Vida inherits Obstaculo{
+	
+	method choque(unAuto) {
+		unAuto.reparar()
+	}
+}
+
 class Meta
 {
     const imagen = "assets/Decor/Finish_3.png"

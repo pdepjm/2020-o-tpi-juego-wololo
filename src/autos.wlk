@@ -1,10 +1,13 @@
 import wollok.game.*
 import escenario.*
+import estadosAuto.*
+
 class Vehiculo{
 	var posicion
-	var imagen 
+	var estado = autoNuevo
+	var imagen = estado.imagen()
 	method position() = posicion
-	method imagen() = imagen
+	method image() = imagen
 	
 	method moverseA(nuevaPosicion) {
 		const x = nuevaPosicion.x()
@@ -17,9 +20,16 @@ class Vehiculo{
 object autoRojo inherits Vehiculo {
 	var choques = 0
 	
+	
+	override method image() = estado.imagen()
+	
 	method crearAuto(){
 	posicion = game.at(10, 2)
-	imagen = "assets/Car_1_Main_Positions/Car_1_01 copia.png"
+	imagen = estado.imagen()
+	}
+
+	method cambiarEstado(nuevoEstado) {
+		estado = nuevoEstado
 	}
 	/*method position() = posicion
 
@@ -35,15 +45,23 @@ object autoRojo inherits Vehiculo {
 	method choques() = choques
 	
 	method destruirse() {
-		choques = choques + 1
+		
+		self.cambiarEstado(estado.proximoEstado())	
 		self.controlChoques()
+		
 
 	}
 	
 	method explotar(){
-        choques = choques +2
+        
+        self.cambiarEstado(autoRoto)
         self.controlChoques()
   
+	}
+	method reparar()
+	{
+		self.cambiarEstado(estado.estadoAnterior())
+		self.controlChoques()
 	}
 	
 	method gana(){
@@ -52,20 +70,13 @@ object autoRojo inherits Vehiculo {
 	}
 	
 	method controlChoques(){
-		if (choques == 1) {
-			imagen = "Car_1_Main_Positions/Car_1_02.png"
-		}else if (choques == 2){
-			imagen = "Car_1_Main_Positions/Car_1_03.png"
-			//game.say(self,"Te quedan 3 vidas")
-		}else if (choques == 3){
-			imagen = "Car_1_Main_Positions/Car_1_04.png"
-			//game.say(self,"Te quedan 2 vidas")
-		}else if (choques == 4){
+
+		if (estado == autoRoto) 
+		{
 			//game.say(self,"Te queda 1 vidas")
-			imagen = "Car_1_Main_Positions/Car_1_05.png"
 			game.say(self,"Perdiste")
 			game.schedule(5000, { game.stop()})
-			}
+		}
 	} 
 	method detenerse(){
 		
@@ -78,6 +89,12 @@ object colision inherits Vehiculo{
 	method crearColision(vehiculo,x,y){
 	posicion = game.at(vehiculo.position().x()+x, vehiculo.position().y()+y)
 	imagen = "assets/Decor/colision.png"		
+	}
+	override method moverseA(nuevaPosicion) {
+		const x = nuevaPosicion.x()
+		if(x >= pista.limiteDer()+1 and x <= pista.limiteIz()+1){
+			posicion = nuevaPosicion
+		}
 	}
 }
 

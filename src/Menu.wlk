@@ -22,7 +22,7 @@ object menu{
 	method iniciar(){
 		cartel.imagen("assets/Setting/WindowNueva.png")
 		game.addVisual(cartel)
-		keyboard.any().onPressDo({
+		keyboard.space().onPressDo({
 			game.clear()
 			play.iniciar()
 		})
@@ -43,7 +43,6 @@ object play {
 }
 
 object seleccionarVehiculo{
-	
 	
 	method iniciar(){
 		

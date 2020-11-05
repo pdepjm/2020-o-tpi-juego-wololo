@@ -2,15 +2,17 @@ import creadoresObstaculos.*
 import wollok.game.*
 import obstaculos.*
 import autos.*
-const obstaculosPosibles = [creadorPlanta,creadorPiedra,creadorBarril,creadorAceite]
+const obstaculosPosibles = [creadorPlanta,creadorPiedra,creadorBarril,creadorAceite,creadorVida]
 
 object pista {
 	const obstaculos = []
 	var contador = 0
 	var limiteDer = 5
 	var limiteIz = 13
-	var obstaculo = new Piedra(position = game.at(5.randomUpTo(14), 19),nombre = "piedra")
+	var obstaculo
 	var property position= game.origin()
+	const puntosCriticosDeAchicamiento = [44,46,48,104,106,108,172,174,176]
+	const puntosCriticosDeEnsanchamiento = [53,55,57,116,118,120,183,185,187]
 	
 	method limiteDer() = limiteDer
 	method limiteIz() = limiteIz
@@ -35,10 +37,10 @@ object pista {
 	method position(nuevaPosicion) {
 		position= nuevaPosicion
 		contador++
-		if(contador == 44 or contador == 46 or contador == 48){
+		if(puntosCriticosDeAchicamiento.contains(contador)){
 		 	self.aumentarLimiteDer()
 		 	self.reducirLimiteIz()
-		}else if(contador == 53 or contador == 55 or contador == 57){
+		}else if(puntosCriticosDeEnsanchamiento.contains(contador)){
 		 	self.reducirLimiteDer()
 		 	self.aumentarLimiteIz()
 		} 
@@ -53,7 +55,7 @@ object pista {
 		obstaculo = unCreador.crear()
 	}
 	method crearObstaculo(){
-		self.obstaculoAElegir(obstaculosPosibles.get(0.randomUpTo(4)))
+		self.obstaculoAElegir(obstaculosPosibles.get(0.randomUpTo(5)))
 		if(not obstaculos.contains(obstaculo)){
 			obstaculos.add(obstaculo)
 			game.addVisual(obstaculo)

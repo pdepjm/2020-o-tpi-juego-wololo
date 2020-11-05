@@ -96,9 +96,10 @@ object juego {
 			
 		
 		})
+
 		game.onTick(100, "Mover obstaculos", {pista.obstaculo().moverObstaculos()})	
 		game.whenCollideDo(colision, {objeto=>objeto.choque(autoRojo)})
-		
+
 	}
 }
 
