@@ -8,7 +8,7 @@ class Vehiculo{
 	var imagen = estado.imagen()
 	method position() = posicion
 	method image() = imagen
-	
+	method estado()=estado
 	method moverseA(nuevaPosicion) {
 		const x = nuevaPosicion.x()
 		if(x >= pista.limiteDer() and x <= pista.limiteIz()){
@@ -83,17 +83,19 @@ object autoRojo inherits Vehiculo {
 	
 }
 
-object colision inherits Vehiculo{
-	method crearColision(vehiculo,x,y){
-	posicion = game.at(vehiculo.position().x()+x, vehiculo.position().y()+y)
-	imagen = "assets/Decor/colision.png"		
-	}
-	override method moverseA(nuevaPosicion) {
+object colision {
+
+	var posicion
+	var vehiculo= autoRojo
+	 method moverseA(nuevaPosicion) {
 		const x = nuevaPosicion.x()
 		if(x >= pista.limiteDer()+1 and x <= pista.limiteIz()+1){
 			posicion = nuevaPosicion
+			
 		}
 	}
+	method image()="assets/Decor/colision.png"
+	method position()= game.at(vehiculo.position().x()+1,vehiculo.position().y()+4)  
 }
 
 object camion inherits Vehiculo {

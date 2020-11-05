@@ -28,7 +28,6 @@ object juego {
 	method agregarAutos() {
 		autoRojo.crearAuto()
 		game.addVisual(autoRojo)
-		colision.crearColision(autoRojo,1,4)
 		game.addVisual(colision)
 	
 		}

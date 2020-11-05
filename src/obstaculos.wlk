@@ -23,7 +23,7 @@ class Piedra inherits Obstaculo{
 }
 class Planta inherits Obstaculo{
 	method choque(unAuto) {
-		unAuto.noAfectar()
+		
 	}
 }
 
