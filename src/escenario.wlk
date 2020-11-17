@@ -61,15 +61,8 @@ object pista {
 			game.addVisual(obstaculo)
 		}
 	}
-	method eliminarObstaculo(){
-		if(obstaculos.any({objeto=> objeto.estaFuera()})){
-			const obstaculoAEliminar = obstaculos.filter({objeto => objeto.estaFuera()}).first()
-		    obstaculos.remove(obstaculoAEliminar)
-			game.removeVisual(obstaculoAEliminar)
-	}
 	
-	}
-	/*method moverObstaculos(){
+	method moverObstaculos(){
 		if(obstaculos.any({objeto => objeto.estaFuera()}) ){
 			const obstaculoAEliminar = obstaculos.filter({objeto => objeto.estaFuera()}).first()
 			obstaculos.remove(obstaculoAEliminar)
@@ -77,6 +70,6 @@ object pista {
 		}else{
 			obstaculos.forEach({objeto => objeto.position(objeto.position().down(1))})
 		}
-	}*/
+	}
 	
 }

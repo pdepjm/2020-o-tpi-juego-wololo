@@ -6,7 +6,7 @@ describe "RACE" {
 	const piedra = new Piedra(position = game.at(0,1), nombre = "piedra")
 	const barril= new Barril(position = game.at(0,1), nombre = "Barril")
 	const planta = new Planta(position = game.at(0,1), nombre = "Tree")
-	const meta = new Meta(posicion=game.at(0,1))
+	const vida= new Vida(position = game.at(0, 1),nombre = "vida")
 	fixture {
 		game.clear() 
 		game.addVisual(autoRojo)
@@ -19,13 +19,13 @@ describe "RACE" {
 	{
      autoRojo.moverseA(game.at(0, 1))
      piedra.choque(autoRojo)
-	 assert.equals("assets/AutoRojo/AutoPrimerChoque.png", autoRojo.image())
+	 assert.equals("assets/AutoRojo/AutoPrimerCoque.png", autoRojo.image())
   	}
 	test "Auto choca con un barril" 
 	{
      autoRojo.moverseA(game.at(0, 1))
      barril.choque(autoRojo)
-	 assert.equals("assets/AutoRojo/AutoChocado.png", autoRojo.image())
+	 assert.equals("assets/AutoRojo/AutoRoto.png", autoRojo.image())
   	}
 	
 	test "Auto choca con una planta" 
@@ -34,11 +34,47 @@ describe "RACE" {
      planta.choque(autoRojo)
 	 assert.equals("assets/AutoRojo/AutoNuevo.png", autoRojo.image())
   	}
-  	/*test "Auto choca con la meta" 
+  	test "Auto choca con una piedra y una vida" 
 	{
      autoRojo.moverseA(game.at(0, 1))
-     meta.choque(autoRojo)
-	 assert.equals("assets/Car_1_Main_Positions/Car_1_01 copia.png", autoRojo.image())
-  	}*/
+     piedra.choque(autoRojo)
+     vida.choque(autoRojo)
+	 assert.equals("assets/AutoRojo/AutoNuevo.png", autoRojo.image())
+  	}
+  	
+  	test "Auto choca con dos piedras y una vida" 
+	{
+     autoRojo.moverseA(game.at(0, 1))
+     piedra.choque(autoRojo)
+     piedra.choque(autoRojo)
+     vida.choque(autoRojo)
+	 assert.equals("assets/AutoRojo/AutoPrimerCoque.png", autoRojo.image())
+  	}
+  	
+  	test "Auto choca con dos piedras y dos vidas" 
+	{
+     autoRojo.moverseA(game.at(0, 1))
+     piedra.choque(autoRojo)
+     piedra.choque(autoRojo)
+     vida.choque(autoRojo)
+     vida.choque(autoRojo)
+	 assert.equals("assets/AutoRojo/AutoNuevo.png", autoRojo.image())
+  	}
+  	
+  	test "Auto choca con un barril y una vida" 
+	{
+     autoRojo.moverseA(game.at(0, 1))
+     barril.choque(autoRojo)
+     vida.choque(autoRojo)
+	 assert.equals("assets/AutoRojo/AutoDestruido.png", autoRojo.image())
+  	}
+  	
+  	test "Auto choca con una planta y una vida" 
+	{
+     autoRojo.moverseA(game.at(0, 1))
+     planta.choque(autoRojo)
+     vida.choque(autoRojo)
+	 assert.equals("assets/AutoRojo/AutoNuevo.png", autoRojo.image())
+  	}
 }
 
