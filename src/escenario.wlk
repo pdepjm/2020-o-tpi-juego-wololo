@@ -2,17 +2,17 @@ import creadoresObstaculos.*
 import wollok.game.*
 import obstaculos.*
 import autos.*
-const obstaculosPosibles = [creadorPlanta,creadorPiedra,creadorBarril,creadorAceite,creadorVida]
 
 object pista {
 	const obstaculos = []
-	var contador = 0
+	var distanciaRecorrida = 0
 	var limiteDer = 5
 	var limiteIz = 13
 	var obstaculo
 	var property position= game.origin()
 	const puntosCriticosDeAchicamiento = [44,46,48,104,106,108,172,174,176]
 	const puntosCriticosDeEnsanchamiento = [53,55,57,116,118,120,183,185,187]
+	const obstaculosPosibles = [creadorPlanta,creadorPiedra,creadorBarril,creadorAceite,creadorVida]
 	
 	method limiteDer() = limiteDer
 	method limiteIz() = limiteIz
@@ -36,11 +36,11 @@ object pista {
 	}
 	method position(nuevaPosicion) {
 		position= nuevaPosicion
-		contador++
-		if(puntosCriticosDeAchicamiento.contains(contador)){
+		distanciaRecorrida++
+		if(puntosCriticosDeAchicamiento.contains(distanciaRecorrida)){
 		 	self.aumentarLimiteDer()
 		 	self.reducirLimiteIz()
-		}else if(puntosCriticosDeEnsanchamiento.contains(contador)){
+		}else if(puntosCriticosDeEnsanchamiento.contains(distanciaRecorrida)){
 		 	self.reducirLimiteDer()
 		 	self.aumentarLimiteIz()
 		} 

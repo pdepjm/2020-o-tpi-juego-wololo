@@ -17,10 +17,10 @@ object autoPrimerChoque {
 }
 
 object autoChocado {
-	const imagen = "assets/AutoRojo/AutoChocado.png"
+	
 	const estadoAnterior = autoPrimerChoque
 	const proximoEstado = autoDestruido
-	method imagen() = imagen
+	method imagen() = "assets/AutoRojo/AutoChocado.png"
 	method estadoAnterior() = estadoAnterior
 	method proximoEstado() = proximoEstado
 }
@@ -36,7 +36,7 @@ object autoDestruido {
 
 object autoRoto {
 	const imagen = "assets/AutoRojo/AutoRoto.png"
-	const estadoAnterior = autoDestruido
+	const estadoAnterior = self
 	const proximoEstado = self
 	method imagen() = imagen
 	method estadoAnterior() = estadoAnterior
