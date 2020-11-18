@@ -1,15 +1,17 @@
 import wollok.game.*
 import autos.*
-
+import escenario.*
 
 class Obstaculo {
 	var position
-	const nombre 
+	const nombre
+	var camino = pista
 	method position() = position
 	method position(nuevaPosicion){
 		position = nuevaPosicion
 	}
 	method image() = "Decor/" + nombre +".png"
+<<<<<<< HEAD
 	method estaFuera() = self.position().y() < 0
 	
 	method controlarObstaculo(){
@@ -19,6 +21,17 @@ class Obstaculo {
 			}
 	}
 	
+=======
+	method estaFuera() = self.position().y() == 0
+	method moverse(){
+		if(self.estaFuera()){
+			camino.obstaculos().remove(self)
+			game.removeVisual(self)
+		}else{
+			 self.position(self.position().down(1))
+		}
+}
+>>>>>>> branch 'master' of https://github.com/pdepjm/2020-o-tpi-juego-wololo.git
  
 }
 class Piedra inherits Obstaculo{
@@ -37,7 +50,7 @@ class Planta inherits Obstaculo{
 class Aceite inherits Obstaculo{
 	
 	method choque(unAuto) {
-		unAuto.detenerse()
+		unAuto.perderControl()
 	}
 
 }

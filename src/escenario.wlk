@@ -27,6 +27,10 @@ object pista {
 	method reducirLimiteIz(){
 		limiteIz--
 		}
+<<<<<<< HEAD
+=======
+	method obstaculos() = obstaculos
+>>>>>>> branch 'master' of https://github.com/pdepjm/2020-o-tpi-juego-wololo.git
 	
 	method position() {
 		return position
@@ -48,20 +52,32 @@ object pista {
 	}
 	method choque(unAuto) {
 	}
+<<<<<<< HEAD
 	
 	
+=======
+
+>>>>>>> branch 'master' of https://github.com/pdepjm/2020-o-tpi-juego-wololo.git
 	method crearObstaculo(){
 		const creador = obstaculosPosibles.get(0.randomUpTo(5))
+<<<<<<< HEAD
 		const obstaculo = creador.crear()
 		if(not obstaculos.contains(obstaculo)){
 			obstaculos.add(obstaculo)
 			game.addVisual(obstaculo)
 		}
+=======
+		creador.crear()
+>>>>>>> branch 'master' of https://github.com/pdepjm/2020-o-tpi-juego-wololo.git
 	}
 	
 	method moverObstaculos(){
+<<<<<<< HEAD
 		obstaculos.forEach({objeto => objeto.position(objeto.position().down(1))})
 		
+=======
+			obstaculos.forEach({objeto => objeto.moverse()})
+>>>>>>> branch 'master' of https://github.com/pdepjm/2020-o-tpi-juego-wololo.git
 	}
 	
 }

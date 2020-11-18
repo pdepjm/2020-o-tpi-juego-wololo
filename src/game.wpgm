@@ -1,7 +1,14 @@
 
 import wollok.game.*
 import juego.*
-
+import menuPrincipal.*
 program juego {
+<<<<<<< HEAD
 	juego.iniciar()
 }
+=======
+	
+	pantallaPrincipal.configurar()
+	//juego.iniciar()
+}
+>>>>>>> branch 'master' of https://github.com/pdepjm/2020-o-tpi-juego-wololo.git

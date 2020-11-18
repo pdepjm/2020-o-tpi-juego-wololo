@@ -1,33 +1,43 @@
 import wollok.game.*
 import obstaculos.*
+<<<<<<< HEAD
+=======
+import obstaculos.*
+>>>>>>> branch 'master' of https://github.com/pdepjm/2020-o-tpi-juego-wololo.git
 import escenario.*
 
-object creadorPiedra {
+class Creador {
+	method instanciarObstaculo(unObstaculo) {
+		pista.obstaculos().add(unObstaculo)
+		game.addVisual(unObstaculo)
+	}
+}
+object creadorPiedra inherits Creador {
 	method crear() {
-		return new Piedra(position = game.at(5.randomUpTo(14), 19),nombre = "piedra")		
+		self.instanciarObstaculo(new Piedra(position = game.at(5.randomUpTo(14), 19),nombre = "piedra"))
 	}
 }
 
-object creadorPlanta {
+object creadorPlanta inherits Creador{
 	method crear() {
-		return new Planta(position = game.at(5.randomUpTo(14), 19),nombre = "Tree")
+		self.instanciarObstaculo(new Planta(position = game.at(5.randomUpTo(14), 19),nombre = "Tree"))
 	}
 }
 
-object creadorBarril {
+object creadorBarril inherits Creador{
 	method crear() {
-		return new Barril(position = game.at(5.randomUpTo(14), 19),nombre = "Barril")
+		self.instanciarObstaculo(new Barril(position = game.at(5.randomUpTo(14), 19),nombre = "Barril"))
 	}	
 }
 
-object creadorAceite {
+object creadorAceite inherits Creador{
 	method crear() {
-		return new Aceite(position = game.at(5.randomUpTo(14), 19),nombre = "Aceite")
+		self.instanciarObstaculo(new Aceite(position = game.at(5.randomUpTo(14), 19),nombre = "Aceite"))
 	}
 }
-object creadorVida {
+object creadorVida inherits Creador{
 	method crear() {
-		return new Vida(position = game.at(5.randomUpTo(14), 19),nombre = "vida")
+		self.instanciarObstaculo(new Vida(position = game.at(5.randomUpTo(14), 19),nombre = "vida"))
 	}
 }
 object creadorMeta{

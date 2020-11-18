@@ -8,6 +8,7 @@ import creadoresObstaculos.*
 object juego {
 	const meta =creadorMeta.crearMeta()
 	const colisionesMeta=[]
+	var vehiculo =  autoRojo
 	method iniciar() {
 		self.configurarJuego()
 		game.boardGround("assets/Fondo/pasto.jpg")
@@ -16,18 +17,19 @@ object juego {
 		self.agregarAutos()
 		self.configurarTeclas()
 		self.configurarAcciones()
-		game.start()
+		//game.start()
 	}
 
 	method configurarJuego() {
-		game.title("Nombre juego")
+		game.title("Race")
 		game.width(20)
 		game.height(20)
 	}
 
 	method agregarAutos() {
-		autoRojo.crearAuto()
-		game.addVisual(autoRojo)
+		vehiculo.configurar()
+		game.addVisual(vehiculo)
+		colision.asignarVehiculo(vehiculo)
 		game.addVisual(colision)
 	
 		}
@@ -45,10 +47,15 @@ object juego {
 			game.addVisual(colisionMeta)
 		})
 	}
+	
+	method asignarVehiculo(nuevoVehiculo)
+	{
+		vehiculo=nuevoVehiculo
+	}
 
 	method configurarTeclas() {
-		keyboard.left().onPressDo({ autoRojo.moverseA(autoRojo.position().left(1)) colision.moverseA(colision.position().left(1))})
-		keyboard.right().onPressDo({ autoRojo.moverseA(autoRojo.position().right(1)) colision.moverseA(colision.position().right(1)) })
+		keyboard.left().onPressDo({ vehiculo.moverseA(vehiculo.position().left(1)) colision.moverseA(colision.position().left(1))})
+		keyboard.right().onPressDo({ vehiculo.moverseA(vehiculo.position().right(1)) colision.moverseA(colision.position().right(1)) })
 		
 	}
 
@@ -63,8 +70,13 @@ object juego {
 		
 		})
 		game.onTick(100, "Mover obstaculos", {pista.moverObstaculos()})	
+<<<<<<< HEAD
 		game.onTick(100, "Eliminar Obstaculos", {obstaculo => obstaculo.controlarObstaculo()})	
 		game.onCollideDo(colision, {objeto=>objeto.choque(autoRojo)})
 		
+=======
+		game.onCollideDo(colision, {objeto=>objeto.choque(vehiculo) pista.obstaculos().remove(objeto) game.removeVisual(objeto)})
+
+>>>>>>> branch 'master' of https://github.com/pdepjm/2020-o-tpi-juego-wololo.git
 	}
 }
