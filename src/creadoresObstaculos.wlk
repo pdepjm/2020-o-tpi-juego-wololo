@@ -1,6 +1,6 @@
 import wollok.game.*
 import obstaculos.*
-import obstaculos.*
+import escenario.*
 
 object creadorPiedra {
 	method crear() {

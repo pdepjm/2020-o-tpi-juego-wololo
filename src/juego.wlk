@@ -63,6 +63,8 @@ object juego {
 		
 		})
 		game.onTick(100, "Mover obstaculos", {pista.moverObstaculos()})	
+		game.onTick(100, "Eliminar Obstaculos", {obstaculo => obstaculo.controlarObstaculo()})	
 		game.onCollideDo(colision, {objeto=>objeto.choque(autoRojo)})
+		
 	}
 }

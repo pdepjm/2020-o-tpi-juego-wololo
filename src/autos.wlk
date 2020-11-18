@@ -93,8 +93,7 @@ object colision {
 	 method moverseA(nuevaPosicion) {
 		const x = nuevaPosicion.x()
 		if(x >= pista.limiteDer()+1 and x <= pista.limiteIz()+1){
-			posicion = nuevaPosicion
-			
+			posicion = nuevaPosicion	
 		}
 	}
 	method image()="assets/Decor/colision.png"

@@ -12,6 +12,13 @@ class Obstaculo {
 	method image() = "Decor/" + nombre +".png"
 	method estaFuera() = self.position().y() < 0
 	
+	method controlarObstaculo(){
+		if(self.estaFuera()){
+			game.removeVisual(self)
+			game.clear()
+			}
+	}
+	
  
 }
 class Piedra inherits Obstaculo{

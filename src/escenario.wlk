@@ -4,15 +4,14 @@ import obstaculos.*
 import autos.*
 
 object pista {
-	const obstaculos = []
+	const property obstaculos = []
 	var distanciaRecorrida = 0
 	var limiteDer = 5
 	var limiteIz = 13
-	var obstaculo
 	var property position= game.origin()
 	const puntosCriticosDeAchicamiento = [44,46,48,104,106,108,172,174,176]
 	const puntosCriticosDeEnsanchamiento = [53,55,57,116,118,120,183,185,187]
-	const obstaculosPosibles = [creadorPlanta,creadorPiedra,creadorBarril,creadorAceite,creadorVida]
+	const property obstaculosPosibles = [creadorPlanta,creadorPiedra,creadorBarril,creadorAceite,creadorVida]
 	
 	method limiteDer() = limiteDer
 	method limiteIz() = limiteIz
@@ -28,8 +27,6 @@ object pista {
 	method reducirLimiteIz(){
 		limiteIz--
 		}
-	method obstaculos() = obstaculos
-	method obstaculo() = obstaculo
 	
 	method position() {
 		return position
@@ -51,11 +48,11 @@ object pista {
 	}
 	method choque(unAuto) {
 	}
-	method obstaculoAElegir(unCreador){
-		obstaculo = unCreador.crear()
-	}
+	
+	
 	method crearObstaculo(){
-		self.obstaculoAElegir(obstaculosPosibles.get(0.randomUpTo(5)))
+		const creador = obstaculosPosibles.get(0.randomUpTo(5))
+		const obstaculo = creador.crear()
 		if(not obstaculos.contains(obstaculo)){
 			obstaculos.add(obstaculo)
 			game.addVisual(obstaculo)
@@ -63,13 +60,8 @@ object pista {
 	}
 	
 	method moverObstaculos(){
-		if(obstaculos.any({objeto => objeto.estaFuera()}) ){
-			const obstaculoAEliminar = obstaculos.filter({objeto => objeto.estaFuera()}).first()
-			obstaculos.remove(obstaculoAEliminar)
-			game.removeVisual(obstaculoAEliminar)
-		}else{
-			obstaculos.forEach({objeto => objeto.position(objeto.position().down(1))})
-		}
+		obstaculos.forEach({objeto => objeto.position(objeto.position().down(1))})
+		
 	}
 	
 }
