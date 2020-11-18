@@ -8,7 +8,6 @@ object pista {
 	var distanciaRecorrida = 0
 	var limiteDer = 5
 	var limiteIz = 13
-	var obstaculo
 	var property position= game.origin()
 	const puntosCriticosDeAchicamiento = [44,46,48,104,106,108,172,174,176]
 	const puntosCriticosDeEnsanchamiento = [53,55,57,116,118,120,183,185,187]
@@ -29,7 +28,6 @@ object pista {
 		limiteIz--
 		}
 	method obstaculos() = obstaculos
-	method obstaculo() = obstaculo
 	
 	method position() {
 		return position
