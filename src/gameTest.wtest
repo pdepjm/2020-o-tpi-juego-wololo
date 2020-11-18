@@ -39,7 +39,7 @@ describe "RACE" {
      autoRojo.moverseA(game.at(0, 1))
      piedra.choque(autoRojo)
      vida.choque(autoRojo)
-	 assert.equals(autoNuevo, autoRojo.estado())
+	 assert.equals(nuevo, autoRojo.estado())
   	}
   	
   	test "Auto choca con dos piedras y una vida" 

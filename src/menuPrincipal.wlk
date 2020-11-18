@@ -1,5 +1,6 @@
 import wollok.game.*
 import juego.*
+import autos.*
 object pantallaPrincipal {
 	
 	method configurar()
@@ -21,6 +22,7 @@ object menu
 	method image() = imagen
 	method seleccionar()
 	{
-		keyboard.left().onPressDo({game.clear() juego.iniciar()})
+		keyboard.left().onPressDo({game.clear() juego.asignarVehiculo(autoRojo) juego.iniciar()})
+		keyboard.right().onPressDo({game.clear() juego.asignarVehiculo(camion)  juego.iniciar()})
 	}
 }

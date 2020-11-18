@@ -1,44 +1,85 @@
-object autoNuevo {
+import wollok.game.*
+object nuevo {
 	const imagen = "assets/AutoRojo/AutoNuevo.png"
 	const estadoAnterior = self
-	const proximoEstado = autoPrimerChoque
+	const proximoEstado = primerChoque
 	method imagen() = imagen
-	method estadoAnterior() = estadoAnterior
-	method proximoEstado() = proximoEstado
+	method afectar(vehiculo)
+	{
+		vehiculo.cambiarEstado(proximoEstado)
+		vehiculo.image("assets/"+vehiculo+"/AutoPrimerCoque.png")
+	}
+	method desafectar(vehiculo)
+	{
+		
+	}
 }
 
-object autoPrimerChoque {
+object primerChoque {
 	const imagen = "assets/AutoRojo/AutoPrimerCoque.png"
-	const estadoAnterior = autoNuevo
-	const proximoEstado = autoChocado
+	const estadoAnterior = nuevo
+	const proximoEstado = chocado
 	method imagen() = imagen
-	method estadoAnterior() = estadoAnterior
-	method proximoEstado() = proximoEstado
+	method afectar(vehiculo)
+	{
+		vehiculo.cambiarEstado(proximoEstado)
+		vehiculo.image("assets/"+vehiculo.nombre()+"/AutoChocado.png")
+	}
+	method desafectar(vehiculo)
+	{
+	 	vehiculo.cambiarEstado(estadoAnterior)
+		vehiculo.image("assets/"+vehiculo.nombre()+"/AutoNuevo.png")
+	}
 }
 
-object autoChocado {
+object chocado {
 	
-	const estadoAnterior = autoPrimerChoque
-	const proximoEstado = autoDestruido
+	const estadoAnterior = primerChoque
+	const proximoEstado = destruido
 	method imagen() = "assets/AutoRojo/AutoChocado.png"
-	method estadoAnterior() = estadoAnterior
-	method proximoEstado() = proximoEstado
+	method afectar(vehiculo)
+	{
+		vehiculo.cambiarEstado(proximoEstado)
+		vehiculo.image("assets/"+vehiculo.nombre()+"/AutoDestruido.png")
+	}
+	method desafectar(vehiculo)
+	{
+	 	vehiculo.cambiarEstado(estadoAnterior)
+		vehiculo.image("assets/"+vehiculo.nombre()+"/AutoPrimerCoque.png")
+	}
 }
 
-object autoDestruido {
+object destruido {
 	const imagen = "assets/AutoRojo/AutoDestruido.png"
-	const estadoAnterior = autoChocado
-	const proximoEstado = autoRoto
+	const estadoAnterior = chocado
+	const proximoEstado = roto
 	method imagen() = imagen
-	method estadoAnterior() = estadoAnterior
-	method proximoEstado() = proximoEstado
+	method afectar(vehiculo)
+	{
+		vehiculo.cambiarEstado(proximoEstado)
+		vehiculo.estado().afectar(vehiculo)
+	}
+	method desafectar(vehiculo)
+	{
+	 	vehiculo.cambiarEstado(estadoAnterior)
+		vehiculo.image("assets/"+vehiculo.nombre()+"/AutoChocado.png")
+	}
 }
 
-object autoRoto {
+object roto {
 	const imagen = "assets/AutoRojo/AutoRoto.png"
 	const estadoAnterior = self
 	const proximoEstado = self
 	method imagen() = imagen
-	method estadoAnterior() = estadoAnterior
-	method proximoEstado() = proximoEstado
+	method afectar(vehiculo)
+	{
+		vehiculo.image("assets/"+vehiculo.nombre()+"/AutoRoto.png")
+		game.say(vehiculo,"Perdiste")
+	    game.schedule(5000, { game.stop()})
+		
+	}
+	method desafectar(vehiculo)
+	{
+		
+	}
 }

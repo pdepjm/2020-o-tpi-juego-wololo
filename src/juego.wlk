@@ -8,6 +8,7 @@ import creadoresObstaculos.*
 object juego {
 	const meta =creadorMeta.crearMeta()
 	const colisionesMeta=[]
+	var vehiculo =  autoRojo
 	method iniciar() {
 		self.configurarJuego()
 		game.boardGround("assets/Fondo/pasto.jpg")
@@ -26,8 +27,9 @@ object juego {
 	}
 
 	method agregarAutos() {
-		autoRojo.crearAuto()
-		game.addVisual(autoRojo)
+		vehiculo.configurar()
+		game.addVisual(vehiculo)
+		colision.asignarVehiculo(vehiculo)
 		game.addVisual(colision)
 	
 		}
@@ -45,10 +47,15 @@ object juego {
 			game.addVisual(colisionMeta)
 		})
 	}
+	
+	method asignarVehiculo(nuevoVehiculo)
+	{
+		vehiculo=nuevoVehiculo
+	}
 
 	method configurarTeclas() {
-		keyboard.left().onPressDo({ autoRojo.moverseA(autoRojo.position().left(1)) colision.moverseA(colision.position().left(1))})
-		keyboard.right().onPressDo({ autoRojo.moverseA(autoRojo.position().right(1)) colision.moverseA(colision.position().right(1)) })
+		keyboard.left().onPressDo({ vehiculo.moverseA(vehiculo.position().left(1)) colision.moverseA(colision.position().left(1))})
+		keyboard.right().onPressDo({ vehiculo.moverseA(vehiculo.position().right(1)) colision.moverseA(colision.position().right(1)) })
 		
 	}
 
@@ -63,7 +70,7 @@ object juego {
 		
 		})
 		game.onTick(100, "Mover obstaculos", {pista.moverObstaculos()})	
-		game.onCollideDo(colision, {objeto=>objeto.choque(autoRojo)})
+		game.onCollideDo(colision, {objeto=>objeto.choque(vehiculo)})
 	}
 }
 
