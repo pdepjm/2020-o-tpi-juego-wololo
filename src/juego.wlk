@@ -70,7 +70,8 @@ object juego {
 		
 		})
 		game.onTick(100, "Mover obstaculos", {pista.moverObstaculos()})	
-		game.onCollideDo(colision, {objeto=>objeto.choque(vehiculo)})
+		game.onCollideDo(colision, {objeto=>objeto.choque(vehiculo) pista.obstaculos().remove(objeto) game.removeVisual(objeto)})
+
 	}
 }
 
