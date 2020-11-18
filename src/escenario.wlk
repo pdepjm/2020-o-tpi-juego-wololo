@@ -56,13 +56,7 @@ object pista {
 	}
 	
 	method moverObstaculos(){
-		if(obstaculos.any({objeto => objeto.estaFuera()}) ){
-			const obstaculoAEliminar = obstaculos.filter({objeto => objeto.estaFuera()}).first()
-			obstaculos.remove(obstaculoAEliminar)
-			game.removeVisual(obstaculoAEliminar)
-		}else{
-			obstaculos.forEach({objeto => objeto.position(objeto.position().down(1))})
-		}
+			obstaculos.forEach({objeto => objeto.moverse()})
 	}
 	
 }

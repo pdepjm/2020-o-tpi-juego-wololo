@@ -1,17 +1,25 @@
 import wollok.game.*
 import autos.*
-
+import escenario.*
 
 class Obstaculo {
 	var position
-	const nombre 
+	const nombre
+	var camino = pista
 	method position() = position
 	method position(nuevaPosicion){
 		position = nuevaPosicion
 	}
 	method image() = "Decor/" + nombre +".png"
-	method estaFuera() = self.position().y() < 0
-	
+	method estaFuera() = self.position().y() == 0
+	method moverse(){
+		if(self.estaFuera()){
+			camino.obstaculos().remove(self)
+			game.removeVisual(self)
+		}else{
+			 self.position(self.position().down(1))
+		}
+}
  
 }
 class Piedra inherits Obstaculo{
