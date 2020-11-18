@@ -55,6 +55,12 @@ object autoRojo inherits Vehiculo {
 	
 	method detenerse(){}
 	method noAfectar(){}
+	method perderControl() {
+		const posiciones = [pista.limiteIz(),pista.limiteDer()]
+		const nuevaPosicion = posiciones.get(0.randomUpTo(2))
+		posicion = game.at(nuevaPosicion, 2)
+	}
+	
 }
 
 object colision {

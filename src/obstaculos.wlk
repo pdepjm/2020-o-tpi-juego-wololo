@@ -30,7 +30,7 @@ class Planta inherits Obstaculo{
 class Aceite inherits Obstaculo{
 	
 	method choque(unAuto) {
-		unAuto.detenerse()
+		unAuto.perderControl()
 	}
 
 }
