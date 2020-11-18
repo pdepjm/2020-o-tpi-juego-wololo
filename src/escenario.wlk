@@ -51,15 +51,10 @@ object pista {
 	}
 	method choque(unAuto) {
 	}
-	method obstaculoAElegir(unCreador){
-		obstaculo = unCreador.crear()
-	}
+
 	method crearObstaculo(){
-		self.obstaculoAElegir(obstaculosPosibles.get(0.randomUpTo(5)))
-		if(not obstaculos.contains(obstaculo)){
-			obstaculos.add(obstaculo)
-			game.addVisual(obstaculo)
-		}
+		const creador = obstaculosPosibles.get(0.randomUpTo(5))
+		creador.crear()
 	}
 	
 	method moverObstaculos(){

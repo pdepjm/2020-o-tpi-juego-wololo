@@ -28,27 +28,20 @@ class Vehiculo{
 }
 
 object autoRojo inherits Vehiculo {
-	
-	
+		
 	method configurar(){
 	posicion = game.at(10, 2)
 	imagen = "assets/AutoRojo/AutoNuevo.png"
 	nombre = "AutoRojo"
 	estado= nuevo
 	}
-
 	
-	method destruirse() {
-		
+	method destruirse() {	
 		estado.afectar(self)
-
 	}
 	
 	method explotar(){
-        
         roto.afectar(self)
-  
-  
 	}
 	method reparar()
 	{
@@ -62,7 +55,6 @@ object autoRojo inherits Vehiculo {
 	
 	method detenerse(){}
 	method noAfectar(){}
-	
 }
 
 object colision {
@@ -99,13 +91,9 @@ object camion inherits Vehiculo {
 	
 	
 	method explotar(){
-        
         estado.afectar(self)
-  
 	}
-	method reparar()
-	{
-		
+	method reparar(){
 	}
 	
 	method gana(){
@@ -115,7 +103,6 @@ object camion inherits Vehiculo {
 	
 	method detenerse(){}
 	method noAfectar(){}
-	
 }
 
 
