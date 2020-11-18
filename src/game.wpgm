@@ -1,7 +1,9 @@
 
 import wollok.game.*
 import juego.*
-
+import menuPrincipal.*
 program juego {
-	juego.iniciar()
+	
+	pantallaPrincipal.configurar()
+	//juego.iniciar()
 }

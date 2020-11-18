@@ -16,11 +16,11 @@ object juego {
 		self.agregarAutos()
 		self.configurarTeclas()
 		self.configurarAcciones()
-		game.start()
+		//game.start()
 	}
 
 	method configurarJuego() {
-		game.title("Nombre juego")
+		game.title("Race")
 		game.width(20)
 		game.height(20)
 	}
