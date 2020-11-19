@@ -31,7 +31,7 @@ object autoRojo inherits Vehiculo {
 		
 	method configurar(){
 	posicion = game.at(10, 2)
-	imagen = "assets/AutoRojo/AutoNuevo.png"
+	imagen = "assets/AutoRojo/Nuevo.png"
 	nombre = "AutoRojo"
 	estado= nuevo
 	}
@@ -86,7 +86,7 @@ object colision {
 object camion inherits Vehiculo {
 	method configurar(){
 		posicion = game.at(10, 2)
-		imagen = "camion.png"
+		imagen = "assets/Camion/Nuevo.png"
 		nombre="Camion"
 		estado=nuevo
 	}
@@ -109,6 +109,11 @@ object camion inherits Vehiculo {
 	
 	method detenerse(){}
 	method noAfectar(){}
+	method perderControl() {
+		const posiciones = [pista.limiteIz(),pista.limiteDer()]
+		const nuevaPosicion = posiciones.get(0.randomUpTo(2))
+		posicion = game.at(nuevaPosicion, 2)
+	}
 }
 
 

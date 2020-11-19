@@ -7,7 +7,7 @@ object nuevo {
 	method afectar(vehiculo)
 	{
 		vehiculo.cambiarEstado(proximoEstado)
-		vehiculo.image("assets/"+vehiculo+"/AutoPrimerCoque.png")
+		vehiculo.image("assets/"+vehiculo+"/PrimerChoque.png")
 	}
 	method desafectar(vehiculo)
 	{
@@ -16,19 +16,19 @@ object nuevo {
 }
 
 object primerChoque {
-	const imagen = "assets/AutoRojo/AutoPrimerCoque.png"
+	const imagen = "assets/AutoRojo/PrimerChoque.png"
 	const estadoAnterior = nuevo
 	const proximoEstado = chocado
 	method imagen() = imagen
 	method afectar(vehiculo)
 	{
 		vehiculo.cambiarEstado(proximoEstado)
-		vehiculo.image("assets/"+vehiculo.nombre()+"/AutoChocado.png")
+		vehiculo.image("assets/"+vehiculo.nombre()+"/Chocado.png")
 	}
 	method desafectar(vehiculo)
 	{
 	 	vehiculo.cambiarEstado(estadoAnterior)
-		vehiculo.image("assets/"+vehiculo.nombre()+"/AutoNuevo.png")
+		vehiculo.image("assets/"+vehiculo.nombre()+"/Nuevo.png")
 	}
 }
 
@@ -40,12 +40,12 @@ object chocado {
 	method afectar(vehiculo)
 	{
 		vehiculo.cambiarEstado(proximoEstado)
-		vehiculo.image("assets/"+vehiculo.nombre()+"/AutoDestruido.png")
+		vehiculo.image("assets/"+vehiculo.nombre()+"/Destruido.png")
 	}
 	method desafectar(vehiculo)
 	{
 	 	vehiculo.cambiarEstado(estadoAnterior)
-		vehiculo.image("assets/"+vehiculo.nombre()+"/AutoPrimerCoque.png")
+		vehiculo.image("assets/"+vehiculo.nombre()+"/PrimerChoque.png")
 	}
 }
 
@@ -62,7 +62,7 @@ object destruido {
 	method desafectar(vehiculo)
 	{
 	 	vehiculo.cambiarEstado(estadoAnterior)
-		vehiculo.image("assets/"+vehiculo.nombre()+"/AutoChocado.png")
+		vehiculo.image("assets/"+vehiculo.nombre()+"/Chocado.png")
 	}
 }
 
@@ -73,7 +73,7 @@ object roto {
 	method imagen() = imagen
 	method afectar(vehiculo)
 	{
-		vehiculo.image("assets/"+vehiculo.nombre()+"/AutoRoto.png")
+		vehiculo.image("assets/"+vehiculo.nombre()+"/Roto.png")
 		game.say(vehiculo,"Perdiste")
 	    game.schedule(5000, { game.stop()})
 		
