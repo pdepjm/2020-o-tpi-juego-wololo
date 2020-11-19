@@ -49,15 +49,11 @@ class Aceite inherits Obstaculo{
 class Barril inherits Obstaculo{
 	
 	method choque(vehiculo) {
-		if(not vehiculo.esAuto()){
-			vehiculo.estado().afectarDistinto(vehiculo)
-		}else {
 			vehiculo.estado().afectar(vehiculo)
 		}
 		
-	}
-
 }
+
 
 class Vida inherits Obstaculo{
 	
