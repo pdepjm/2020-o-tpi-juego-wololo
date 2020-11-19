@@ -9,7 +9,6 @@ object impecable{
 	{
 		camion.cambiarEstado(chocado)
 	}
-	method desafectar(){}
 
 }
 
@@ -20,6 +19,5 @@ object chocado {
 	    game.schedule(1200, { game.stop()})	
 	    
 	}
-	method desafectar(){}
 
 }
