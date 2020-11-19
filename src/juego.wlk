@@ -8,7 +8,7 @@ import creadoresObstaculos.*
 object juego {
 	const meta =creadorMeta.crearMeta()
 	const colisionesMeta=[]
-	var vehiculo =  autoRojo
+	var vehiculo 
 	method iniciar() {
 		self.configurarJuego()
 		game.boardGround("assets/Fondo/pasto.jpg")
@@ -27,7 +27,7 @@ object juego {
 	}
 
 	method agregarAutos() {
-		vehiculo.configurar()
+		//vehiculo.configurar()
 		game.addVisual(vehiculo)
 		colision.asignarVehiculo(vehiculo)
 		game.addVisual(colision)
@@ -66,7 +66,8 @@ object juego {
 		} )
 		game.onTick(1000, "crear obstaculo", {
 			if(not(meta.visible()))
-				pista.crearObstaculo()		
+				pista.crearObstaculo()	
+			
 		
 		})
 		game.onTick(100, "Mover obstaculos", {pista.moverObstaculos()})	

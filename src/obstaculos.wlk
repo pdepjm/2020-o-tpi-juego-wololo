@@ -70,7 +70,8 @@ class Meta
 		unAuto.gana()
 		
 		}
-	method visible() = self.position().y() <= 19
+		
+    method visible() = self.position().y() <= 19
 }
 
 

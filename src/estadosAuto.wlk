@@ -42,18 +42,16 @@ object chocado {
 }
 
 object destruido {
-		method afectar(vehiculo)
+	method afectar(vehiculo)
 	{
 		vehiculo.cambiarEstado(roto)
-		vehiculo.image("assets/"+vehiculo.nombre()+"/Roto.png")
+		vehiculo.estado().afectar(vehiculo)
 	}
 	method desafectar(vehiculo)
 	{
 	 	vehiculo.cambiarEstado(chocado)
 		vehiculo.image("assets/"+vehiculo.nombre()+"/Chocado.png")
 	}
-	
-	
 }
 
 object roto {
@@ -61,15 +59,12 @@ object roto {
 	method afectar(vehiculo)
 	{
 		vehiculo.image("assets/"+vehiculo.nombre()+"/Roto.png")
-		vehiculo.cambiarEstado(self)
 		game.addVisual(loser)
-	    game.schedule(1500, { game.stop()})
+	    game.schedule(5000, { game.stop()})
 		
 	}
 	method desafectar(vehiculo)
 	{
 		
 	}
-	
-	
 }
