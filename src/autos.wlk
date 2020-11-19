@@ -5,7 +5,7 @@ import carteles.*
 
 class Vehiculo{
 	var posicion
-	var estado 
+	var property estado = nuevo
 	var imagen
 	var nombre 
 	method nombre() = nombre

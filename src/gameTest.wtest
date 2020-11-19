@@ -2,39 +2,35 @@ import wollok.game.*
 import autos.*
 import obstaculos.*
 import estadosAuto.*
-describe "RACE" {
+describe "Auto" {
 	const piedra = new Piedra(position = game.at(0,1), nombre = "piedra")
 	const barril= new Barril(position = game.at(0,1), nombre = "Barril")
 	const planta = new Planta(position = game.at(0,1), nombre = "Tree")
 	const vida= new Vida(position = game.at(0, 1),nombre = "vida")
+	const aceite = new Aceite (position = game.at(0, 1),nombre = "aceite")
 	fixture {
 		game.clear() 
 		game.addVisual(autoRojo)
 		game.addVisual(piedra)
 		game.addVisual(barril)
+		game.addVisual(aceite)
 		
 	}
 	
-	test "Auto choca con una piedra" 
+	test "Auto choca con una piedra y se rompe" 
 	{
      autoRojo.moverseA(game.at(0, 1))
      piedra.choque(autoRojo)
-	 assert.equals("assets/AutoRojo/AutoPrimerCoque.png", autoRojo.image())
-  	}
-	test "Auto choca con un barril" 
-	{
-     autoRojo.moverseA(game.at(0, 1))
-     barril.choque(autoRojo)
-	 assert.equals("assets/AutoRojo/AutoRoto.png", autoRojo.image())
+	 assert.equals(primerChoque, autoRojo.estado())
   	}
 	
-	test "Auto choca con una planta no causa efecto" 
+	test "Auto choca con una planta y no causa efecto" 
 	{
      autoRojo.moverseA(game.at(0, 1))
      planta.choque(autoRojo)
-	 assert.equals("assets/AutoRojo/AutoNuevo.png", autoRojo.image())
+	 assert.equals(nuevo, autoRojo.estado())
   	}
-  	test "Auto choca con una piedra y una vida" 
+  	test "Auto choca con una piedra y se rompe ,luego choca con una vida y se arregla" 
 	{
      autoRojo.moverseA(game.at(0, 1))
      piedra.choque(autoRojo)
@@ -42,39 +38,107 @@ describe "RACE" {
 	 assert.equals(nuevo, autoRojo.estado())
   	}
   	
-  	test "Auto choca con dos piedras y una vida" 
-	{
-     autoRojo.moverseA(game.at(0, 1))
-     piedra.choque(autoRojo)
-     piedra.choque(autoRojo)
-     vida.choque(autoRojo)
-	 assert.equals("assets/AutoRojo/AutoPrimerCoque.png", autoRojo.image())
-  	}
   	
-  	test "Auto choca con dos piedras y dos vidas" 
-	{
-     autoRojo.moverseA(game.at(0, 1))
-     piedra.choque(autoRojo)
-     piedra.choque(autoRojo)
-     vida.choque(autoRojo)
-     vida.choque(autoRojo)
-	 assert.equals("assets/AutoRojo/AutoNuevo.png", autoRojo.image())
-  	}
-  	
-  	test "Auto choca con un barril y una vida" 
+  	test "Auto choca con un barril , se rompe y pierde " 
 	{
      autoRojo.moverseA(game.at(0, 1))
      barril.choque(autoRojo)
      vida.choque(autoRojo)
-	 assert.equals("assets/AutoRojo/AutoRoto.png", autoRojo.image())
+	 assert.equals(roto, autoRojo.estado())
   	}
   	
-  	test "Auto choca con una planta y una vida" 
+  	test "Auto choca con una planta y una vida, no provocan efecto" 
 	{
      autoRojo.moverseA(game.at(0, 1))
      planta.choque(autoRojo)
      vida.choque(autoRojo)
-	 assert.equals("assets/AutoRojo/AutoNuevo.png", autoRojo.image())
+	 assert.equals(nuevo, autoRojo.estado())
+  	}
+  	
+  	test "Auto choca con aceite y su estado sigue siendo el mismo "
+  	{
+  	autoRojo.moverseA(game.at(0,1))
+  	aceite.choque(autoRojo)
+  	assert.equals(nuevo, autoRojo.estado())
+  	}
+  	
+  	test "Auto choca con 4 piedras , se rompe y pierde "
+  	{
+  	autoRojo.moverseA(game.at(0,1))
+  	piedra.choque(autoRojo)
+  	piedra.choque(autoRojo)
+  	piedra.choque(autoRojo)
+  	piedra.choque(autoRojo)
+  	assert.equals(roto, autoRojo.estado())
+  	}
+  	
+}
+
+describe "Camion" {
+	const piedra = new Piedra(position = game.at(0,1), nombre = "piedra")
+	const barril= new Barril(position = game.at(0,1), nombre = "Barril")
+	const planta = new Planta(position = game.at(0,1), nombre = "Tree")
+	const vida= new Vida(position = game.at(0, 1),nombre = "vida")
+	const aceite = new Aceite (position = game.at(0, 1),nombre = "aceite")
+	fixture {
+		game.clear() 
+		game.addVisual(camion)
+		game.addVisual(piedra)
+		game.addVisual(barril)
+		game.addVisual(aceite)
+		
+	}
+	
+	test "Camion choca con una piedra y no le causa ningun daño" 
+	{
+     autoRojo.moverseA(game.at(0, 1))
+     piedra.choque(camion)
+	 assert.equals(nuevo, camion.estado())
+  	}
+	test "Camion choca con un barril y se rompe" 
+	{
+     camion.moverseA(game.at(0, 1))
+     barril.choque(camion)
+	 assert.equals(primerChoque, camion.estado())
+  	}
+	
+	test "Camion choca con una planta y no le hace daño" 
+	{
+     camion.moverseA(game.at(0, 1))
+     planta.choque(autoRojo)
+	 assert.equals(nuevo, autoRojo.estado())
+  	}
+  	test "Camion choca con una piedra y una vida , no causa efecto" 
+	{
+     camion.moverseA(game.at(0, 1))
+     piedra.choque(camion)
+     vida.choque(camion)
+	 assert.equals(nuevo, camion.estado())
+  	}
+  	
+  	test "Camion choca con una planta y una vida, no provocan efecto" 
+	{
+     camion.moverseA(game.at(0, 1))
+     planta.choque(camion)
+     vida.choque(camion)
+	 assert.equals(nuevo, camion.estado())
+  	}
+  	
+  	test "Camion choca con aceite y su estado sigue siendo el mismo "
+  	{
+  	camion.moverseA(game.at(0,1))
+  	aceite.choque(camion)
+  	assert.equals(nuevo, camion.estado())
+  	}
+  	
+  	test "Camion choca 4 veces con el Barril y se rompe tanto que pierde"
+  	{
+  	camion.moverseA(game.at(0,1))
+  	barril.choque(camion)
+  	barril.choque(camion)
+  	barril.choque(camion)
+  	barril.choque(camion)
+  	assert.equals(roto, camion.estado())
   	}
 }
 

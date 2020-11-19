@@ -5,7 +5,7 @@ object nuevo {
 	method afectar(vehiculo)
 	{
 		vehiculo.cambiarEstado(primerChoque)
-		vehiculo.image("assets/"+vehiculo+"/PrimerChoque.png")
+		vehiculo.image("assets/"+vehiculo.nombre()+"/PrimerChoque.png")
 	}
 	method desafectar(vehiculo)
 	{
@@ -61,6 +61,7 @@ object roto {
 	method afectar(vehiculo)
 	{
 		vehiculo.image("assets/"+vehiculo.nombre()+"/Roto.png")
+		vehiculo.cambiarEstado(self)
 		game.addVisual(loser)
 	    game.schedule(1500, { game.stop()})
 		
