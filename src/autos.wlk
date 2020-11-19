@@ -38,33 +38,9 @@ class Vehiculo{
 	}
 	
 	
-	method destruirse() {	
-		estado.afectar(self)
-	}
-	
-	method explotar(){
-		self.cambiarEstado(roto)
-        estado.afectar(self)
-	}
-	method reparar()
-	{
-		estado.desafectar(self)
-	}
 }
 
-object autoRojo1 inherits Vehiculo {
-		
-	method configurar(){
-	posicion = game.at(10, 2)
-	imagen = "assets/AutoRojo/Nuevo.png"
-	nombre = "AutoRojo"
-	estado= nuevo
-	}
-	
-	
-	
-	
-}
+
 
 object colision {
 
@@ -83,28 +59,6 @@ object colision {
 	}
 	method image()="assets/Decor/colision.png"
 	method position()= game.at(vehiculo.position().x()+1,vehiculo.position().y()+4)  
-	
-}
-
-class Camion inherits Vehiculo {
-	method configurar(){
-		posicion = game.at(10, 2)
-		imagen = "assets/Camion/Nuevo.png"
-		nombre="Camion"
-		estado=nuevo
-	}
-
-
-	 override method destruirse() {
-	}
-	
-	
-	override method explotar(){
-        estado.afectar(self)
-	}
-	override method reparar(){
-	}
-	
 	
 }
 

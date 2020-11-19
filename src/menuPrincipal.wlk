@@ -23,8 +23,8 @@ object menu
 	method image() = imagen
 	method seleccionar()
 	{
-		keyboard.left().onPressDo({game.clear() const autoRojo = new Vehiculo(posicion = game.at(10, 2),imagen = "assets/AutoRojo/Nuevo.png",nombre = "AutoRojo",estado= nuevo) juego.asignarVehiculo(autoRojo) juego.iniciar()})
-		keyboard.right().onPressDo({game.clear() const camion = new Camion(posicion = game.at(10, 2),imagen = "assets/Camion/Nuevo.png",nombre = "Camion",estado= nuevo) juego.asignarVehiculo(camion)  juego.iniciar()})
+		keyboard.left().onPressDo({game.clear() const autoRojo = new Vehiculo(posicion = game.at(10, 2),imagen = "assets/AutoRojo/Nuevo.png",nombre = "AutoRojo",estado= nuevoAuto) juego.asignarVehiculo(autoRojo) juego.iniciar()})
+		keyboard.right().onPressDo({game.clear() const camion = new Vehiculo(posicion = game.at(10, 2),imagen = "assets/Camion/Nuevo.png",nombre = "Camion",estado= nuevoCamion) juego.asignarVehiculo(camion)  juego.iniciar()})
 	}
 }
 object intro

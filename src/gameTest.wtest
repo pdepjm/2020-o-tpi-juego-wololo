@@ -9,7 +9,7 @@ describe "Auto" {
 	const planta = new Planta(position = game.at(0,1), nombre = "Tree")
 	const vida= new Vida(position = game.at(0, 1),nombre = "vida")
 	const aceite = new Aceite (position = game.at(0, 1),nombre = "aceite")
-	const autoRojo = new Vehiculo(posicion = game.at(10, 2),imagen = "assets/AutoRojo/Nuevo.png",nombre = "AutoRojo",estado= nuevo)
+	const autoRojo = new Vehiculo(posicion = game.at(10, 2),imagen = "assets/AutoRojo/Nuevo.png",nombre = "AutoRojo",estado= nuevoAuto)
 	
 	fixture {
 		game.clear() 
@@ -24,21 +24,21 @@ describe "Auto" {
 	{
      autoRojo.moverseA(game.at(0, 1))
      piedra.choque(autoRojo)
-	 assert.equals(primerChoque, autoRojo.estado())
+	 assert.equals(primerChoqueAuto, autoRojo.estado())
   	}
 	
 	test "Auto choca con una planta y no causa efecto" 
 	{
      autoRojo.moverseA(game.at(0, 1))
      planta.choque(autoRojo)
-	 assert.equals(nuevo, autoRojo.estado())
+	 assert.equals(nuevoAuto, autoRojo.estado())
   	}
   	test "Auto choca con una piedra y se rompe ,luego choca con una vida y se arregla" 
 	{
      autoRojo.moverseA(game.at(0, 1))
      piedra.choque(autoRojo)
      vida.choque(autoRojo)
-	 assert.equals(nuevo, autoRojo.estado())
+	 assert.equals(nuevoAuto, autoRojo.estado())
   	}
   	
   	
@@ -47,7 +47,7 @@ describe "Auto" {
      autoRojo.moverseA(game.at(0, 1))
      barril.choque(autoRojo)
      vida.choque(autoRojo)
-	 assert.equals(roto, autoRojo.estado())
+	 assert.equals(rotoAuto, autoRojo.estado())
   	}
   	
   	test "Auto choca con una planta y una vida, no provocan efecto" 
@@ -55,14 +55,14 @@ describe "Auto" {
      autoRojo.moverseA(game.at(0, 1))
      planta.choque(autoRojo)
      vida.choque(autoRojo)
-	 assert.equals(nuevo, autoRojo.estado())
+	 assert.equals(nuevoAuto, autoRojo.estado())
   	}
   	
   	test "Auto choca con aceite y su estado sigue siendo el mismo "
   	{
   	autoRojo.moverseA(game.at(0,1))
   	aceite.choque(autoRojo)
-  	assert.equals(nuevo, autoRojo.estado())
+  	assert.equals(nuevoAuto, autoRojo.estado())
   	}
   	
   	test "Auto choca con 4 piedras , se rompe y pierde "
@@ -72,7 +72,7 @@ describe "Auto" {
   	piedra.choque(autoRojo)
   	piedra.choque(autoRojo)
   	piedra.choque(autoRojo)
-  	assert.equals(roto, autoRojo.estado())
+  	assert.equals(rotoAuto, autoRojo.estado())
   	}
   	
 }
@@ -83,7 +83,7 @@ describe "Camion" {
 	const planta = new Planta(position = game.at(0,1), nombre = "Tree")
 	const vida= new Vida(position = game.at(0, 1),nombre = "vida")
 	const aceite = new Aceite (position = game.at(0, 1),nombre = "aceite")
-	const camion = new Camion(posicion = game.at(10, 2),imagen = "assets/Camion/Nuevo.png",nombre = "Camion",estado= nuevo)
+	const camion = new Vehiculo(posicion = game.at(10, 2),imagen = "assets/Camion/Nuevo.png",nombre = "Camion",estado= nuevoCamion)
 	fixture {
 		game.clear() 
 		game.addVisual(camion)
@@ -97,27 +97,27 @@ describe "Camion" {
 	{
      camion.moverseA(game.at(0, 1))
      piedra.choque(camion)
-	 assert.equals(nuevo, camion.estado())
+	 assert.equals(nuevoCamion, camion.estado())
   	}
 	test "Camion choca con un barril y se rompe" 
 	{
      camion.moverseA(game.at(0, 1))
      barril.choque(camion)
-	 assert.equals(primerChoque, camion.estado())
+	 assert.equals(primerChoqueCamion, camion.estado())
   	}
 	
 	test "Camion choca con una planta y no le hace daño" 
 	{
      camion.moverseA(game.at(0, 1))
      planta.choque(camion)
-	 assert.equals(nuevo, camion.estado())
+	 assert.equals(nuevoCamion, camion.estado())
   	}
   	test "Camion choca con una piedra y una vida , no causa efecto" 
 	{
      camion.moverseA(game.at(0, 1))
      piedra.choque(camion)
      vida.choque(camion)
-	 assert.equals(nuevo, camion.estado())
+	 assert.equals(nuevoCamion, camion.estado())
   	}
   	
   	test "Camion choca con una planta y una vida, no provocan efecto" 
@@ -125,14 +125,14 @@ describe "Camion" {
      camion.moverseA(game.at(0, 1))
      planta.choque(camion)
      vida.choque(camion)
-	 assert.equals(nuevo, camion.estado())
+	 assert.equals(nuevoCamion, camion.estado())
   	}
   	
   	test "Camion choca con aceite y su estado sigue siendo el mismo "
   	{
   	camion.moverseA(game.at(0,1))
   	aceite.choque(camion)
-  	assert.equals(nuevo, camion.estado())
+  	assert.equals(nuevoCamion, camion.estado())
   	}
   	
   	test "Camion choca 4 veces con el Barril y se rompe tanto que pierde"
@@ -142,6 +142,6 @@ describe "Camion" {
   	barril.choque(camion)
   	barril.choque(camion)
   	barril.choque(camion)
-  	assert.equals(roto, camion.estado())
+  	assert.equals(rotoCamion, camion.estado())
   	}
 }
