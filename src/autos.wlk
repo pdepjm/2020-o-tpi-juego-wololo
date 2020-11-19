@@ -5,7 +5,7 @@ import carteles.*
 
 class Vehiculo{
 	var posicion
-	var property estado = nuevo
+	var estado 
 	var imagen
 	var nombre 
 	method nombre() = nombre
@@ -26,9 +26,9 @@ class Vehiculo{
 		}
 	}
 	
-		method gana(){
+	method gana(){
 		game.addVisual(win)
-		game.schedule(1500, { game.stop()})
+		game.schedule(500, { game.stop()})
 	}
 	
 	method perderControl() {
@@ -36,9 +36,23 @@ class Vehiculo{
 		const nuevaPosicion = posiciones.get(0.randomUpTo(2))
 		posicion = game.at(nuevaPosicion, 2)
 	}
+	
+	
+	method destruirse() {	
+		estado.afectar(self)
+	}
+	
+	method explotar(){
+		self.cambiarEstado(roto)
+        estado.afectar(self)
+	}
+	method reparar()
+	{
+		estado.desafectar(self)
+	}
 }
 
-object autoRojo inherits Vehiculo {
+object autoRojo1 inherits Vehiculo {
 		
 	method configurar(){
 	posicion = game.at(10, 2)
@@ -47,24 +61,15 @@ object autoRojo inherits Vehiculo {
 	estado= nuevo
 	}
 	
-	method destruirse() {	
-		estado.afectar(self)
-	}
 	
-	method explotar(){
-        roto.afectar(self)
-	}
-	method reparar()
-	{
-		estado.desafectar(self)
-	}
+	
 	
 }
 
 object colision {
 
 	var posicion
-	var vehiculo= autoRojo
+	var vehiculo
 	 method moverseA(nuevaPosicion) {
 		const x = nuevaPosicion.x()
 		if(x >= pista.limiteDer()+1 and x <= pista.limiteIz()+1){
@@ -81,7 +86,7 @@ object colision {
 	
 }
 
-object camion inherits Vehiculo {
+class Camion inherits Vehiculo {
 	method configurar(){
 		posicion = game.at(10, 2)
 		imagen = "assets/Camion/Nuevo.png"
@@ -90,15 +95,16 @@ object camion inherits Vehiculo {
 	}
 
 
-	method destruirse() {
+	 override method destruirse() {
 	}
 	
 	
-	method explotar(){
+	override method explotar(){
         estado.afectar(self)
 	}
-	method reparar(){
+	override method reparar(){
 	}
+	
 	
 }
 

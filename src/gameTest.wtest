@@ -1,3 +1,4 @@
+
 import wollok.game.*
 import autos.*
 import obstaculos.*
@@ -8,6 +9,8 @@ describe "Auto" {
 	const planta = new Planta(position = game.at(0,1), nombre = "Tree")
 	const vida= new Vida(position = game.at(0, 1),nombre = "vida")
 	const aceite = new Aceite (position = game.at(0, 1),nombre = "aceite")
+	const autoRojo = new Vehiculo(posicion = game.at(10, 2),imagen = "assets/AutoRojo/Nuevo.png",nombre = "AutoRojo",estado= nuevo)
+	
 	fixture {
 		game.clear() 
 		game.addVisual(autoRojo)
@@ -80,6 +83,7 @@ describe "Camion" {
 	const planta = new Planta(position = game.at(0,1), nombre = "Tree")
 	const vida= new Vida(position = game.at(0, 1),nombre = "vida")
 	const aceite = new Aceite (position = game.at(0, 1),nombre = "aceite")
+	const camion = new Camion(posicion = game.at(10, 2),imagen = "assets/Camion/Nuevo.png",nombre = "Camion",estado= nuevo)
 	fixture {
 		game.clear() 
 		game.addVisual(camion)
@@ -91,7 +95,7 @@ describe "Camion" {
 	
 	test "Camion choca con una piedra y no le causa ningun daño" 
 	{
-     autoRojo.moverseA(game.at(0, 1))
+     camion.moverseA(game.at(0, 1))
      piedra.choque(camion)
 	 assert.equals(nuevo, camion.estado())
   	}
@@ -105,8 +109,8 @@ describe "Camion" {
 	test "Camion choca con una planta y no le hace daño" 
 	{
      camion.moverseA(game.at(0, 1))
-     planta.choque(autoRojo)
-	 assert.equals(nuevo, autoRojo.estado())
+     planta.choque(camion)
+	 assert.equals(nuevo, camion.estado())
   	}
   	test "Camion choca con una piedra y una vida , no causa efecto" 
 	{
@@ -141,4 +145,3 @@ describe "Camion" {
   	assert.equals(roto, camion.estado())
   	}
 }
-
