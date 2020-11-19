@@ -25,6 +25,17 @@ class Vehiculo{
 			posicion = nuevaPosicion
 		}
 	}
+	
+		method gana(){
+		game.addVisual(win)
+		game.schedule(1500, { game.stop()})
+	}
+	
+	method perderControl() {
+		const posiciones = [pista.limiteIz(),pista.limiteDer()]
+		const nuevaPosicion = posiciones.get(0.randomUpTo(2))
+		posicion = game.at(nuevaPosicion, 2)
+	}
 }
 
 object autoRojo inherits Vehiculo {
@@ -46,17 +57,6 @@ object autoRojo inherits Vehiculo {
 	method reparar()
 	{
 		estado.desafectar(self)
-	}
-	
-	method gana(){
-		game.addVisual(win)
-		game.schedule(500, { game.stop()})
-	}
-	
-	method perderControl() {
-		const posiciones = [pista.limiteIz(),pista.limiteDer()]
-		const nuevaPosicion = posiciones.get(0.randomUpTo(2))
-		posicion = game.at(nuevaPosicion, 2)
 	}
 	
 }
@@ -100,16 +100,6 @@ object camion inherits Vehiculo {
 	method reparar(){
 	}
 	
-	method gana(){
-		game.addVisual(win)
-		game.schedule(500, { game.stop()})
-	}
-	
-	method perderControl() {
-		const posiciones = [pista.limiteIz(),pista.limiteDer()]
-		const nuevaPosicion = posiciones.get(0.randomUpTo(2))
-		posicion = game.at(nuevaPosicion, 2)
-	}
 }
 
 
