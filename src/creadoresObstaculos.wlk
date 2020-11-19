@@ -1,5 +1,6 @@
 import wollok.game.*
 import obstaculos.*
+import obstaculos.*
 import escenario.*
 
 class Creador {

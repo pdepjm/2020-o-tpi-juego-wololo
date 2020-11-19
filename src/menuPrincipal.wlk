@@ -6,7 +6,7 @@ object pantallaPrincipal {
 	method configurar()
 	{
 		game.boardGround("assets/Fondo/pasto.jpg")
-		game.title("Race")
+		game.title("Racing")
 		game.width(20)
 		game.height(20)
 		game.addVisual(menu)

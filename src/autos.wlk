@@ -2,12 +2,10 @@ import wollok.game.*
 import escenario.*
 import estadosAuto.*
 import carteles.*
-import estadosCamion.*
-
 
 class Vehiculo{
 	var posicion
-	var property estado = nuevo
+	var estado 
 	var imagen
 	var nombre 
 	method nombre() = nombre
@@ -27,17 +25,6 @@ class Vehiculo{
 			posicion = nuevaPosicion
 		}
 	}
-	
-		method perderControl() {
-		const posiciones = [pista.limiteIz(),pista.limiteDer()]
-		const nuevaPosicion = posiciones.get(0.randomUpTo(2))
-		posicion = game.at(nuevaPosicion, 2)
-	}
-	
-		method gana(){
-		game.schedule(1500, { game.stop()})
-		game.addVisual(win)
-	}
 }
 
 object autoRojo inherits Vehiculo {
@@ -49,6 +36,29 @@ object autoRojo inherits Vehiculo {
 	estado= nuevo
 	}
 	
+	method destruirse() {	
+		estado.afectar(self)
+	}
+	
+	method explotar(){
+        roto.afectar(self)
+	}
+	method reparar()
+	{
+		estado.desafectar(self)
+	}
+	
+	method gana(){
+		game.addVisual(win)
+		game.schedule(500, { game.stop()})
+	}
+	
+	method perderControl() {
+		const posiciones = [pista.limiteIz(),pista.limiteDer()]
+		const nuevaPosicion = posiciones.get(0.randomUpTo(2))
+		posicion = game.at(nuevaPosicion, 2)
+	}
+	
 }
 
 object colision {
@@ -58,7 +68,8 @@ object colision {
 	 method moverseA(nuevaPosicion) {
 		const x = nuevaPosicion.x()
 		if(x >= pista.limiteDer()+1 and x <= pista.limiteIz()+1){
-			posicion = nuevaPosicion	
+			posicion = nuevaPosicion
+			
 		}
 	}
 	method asignarVehiculo(nuevoVehiculo)
@@ -75,8 +86,31 @@ object camion inherits Vehiculo {
 		posicion = game.at(10, 2)
 		imagen = "assets/Camion/Nuevo.png"
 		nombre="Camion"
-		estado = impecable
+		estado=nuevo
 	}
- 
 
+
+	method destruirse() {
+	}
+	
+	
+	method explotar(){
+        estado.afectar(self)
+	}
+	method reparar(){
+	}
+	
+	method gana(){
+		game.addVisual(win)
+		game.schedule(500, { game.stop()})
+	}
+	
+	method perderControl() {
+		const posiciones = [pista.limiteIz(),pista.limiteDer()]
+		const nuevaPosicion = posiciones.get(0.randomUpTo(2))
+		posicion = game.at(nuevaPosicion, 2)
+	}
 }
+
+
+

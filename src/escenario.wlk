@@ -4,14 +4,14 @@ import obstaculos.*
 import autos.*
 
 object pista {
-	const property obstaculos = []
+	const obstaculos = []
 	var distanciaRecorrida = 0
 	var limiteDer = 5
 	var limiteIz = 13
 	var property position= game.origin()
 	const puntosCriticosDeAchicamiento = [44,46,48,104,106,108,172,174,176]
 	const puntosCriticosDeEnsanchamiento = [53,55,57,116,118,120,183,185,187]
-	const property obstaculosPosibles = [creadorPlanta,creadorPiedra,creadorBarril,creadorAceite,creadorVida]
+	const obstaculosPosibles = [creadorPlanta,creadorPiedra,creadorBarril,creadorAceite,creadorVida]
 	
 	method limiteDer() = limiteDer
 	method limiteIz() = limiteIz
@@ -27,6 +27,7 @@ object pista {
 	method reducirLimiteIz(){
 		limiteIz--
 		}
+	method obstaculos() = obstaculos
 	
 	method position() {
 		return position
@@ -55,7 +56,7 @@ object pista {
 	}
 	
 	method moverObstaculos(){
-		obstaculos.forEach({objeto => objeto.moverse()})
+			obstaculos.forEach({objeto => objeto.moverse()})
 	}
 	
 }

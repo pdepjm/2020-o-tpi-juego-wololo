@@ -1,68 +1,70 @@
 import wollok.game.*
 import carteles.*
-import autos.*
+object nuevo {
 
-object nuevo{
-	method afectar()
+	method afectar(vehiculo)
 	{
-		autoRojo.cambiarEstado(primerChoque)
-		autoRojo.image("assets/"+autoRojo.nombre()+"/PrimerCoque.png")
+		vehiculo.cambiarEstado(primerChoque)
+		vehiculo.image("assets/"+vehiculo+"/PrimerChoque.png")
 	}
-	method desafectar(){}
-}
-
-object primerChoque{
-	method afectar()
+	method desafectar(vehiculo)
 	{
-		autoRojo.cambiarEstado(chocado)
-		autoRojo.image("assets/"+autoRojo.nombre()+"/Chocado.png")
-	}
-	method desafectar()
-	{
-	 	autoRojo.cambiarEstado(nuevo)
-		autoRojo.image("assets/"+autoRojo.nombre()+"/Nuevo.png")
+		
 	}
 }
 
-object chocado{
-	method afectar()
-	{
-		autoRojo.cambiarEstado(roto)
-		autoRojo.image("assets/"+autoRojo.nombre()+"/Destruido.png")
-	}
-	method desafectar()
-	{
-	 	autoRojo.cambiarEstado(primerChoque)
-		autoRojo.image("assets/"+autoRojo.nombre()+"/PrimerCoque.png")
+object primerChoque {
 
+	method afectar(vehiculo)
+	{
+		vehiculo.cambiarEstado(chocado)
+		vehiculo.image("assets/"+vehiculo.nombre()+"/Chocado.png")
+	}
+	method desafectar(vehiculo)
+	{
+	 	vehiculo.cambiarEstado(nuevo)
+		vehiculo.image("assets/"+vehiculo.nombre()+"/Nuevo.png")
+	}
+}
+
+object chocado {
+	
+	method afectar(vehiculo)
+	{
+		vehiculo.cambiarEstado(destruido)
+		vehiculo.image("assets/"+vehiculo.nombre()+"/Destruido.png")
+	}
+	method desafectar(vehiculo)
+	{
+	 	vehiculo.cambiarEstado(primerChoque)
+		vehiculo.image("assets/"+vehiculo.nombre()+"/PrimerChoque.png")
 	}
 }
 
 object destruido {
-	method afectar()
+	method afectar(vehiculo)
 	{
-		//vehiculo.cambiarEstado(roto)
-		//vehiculo.estado().afecta(vehiculo)
-		game.addVisual(loser)
-	    game.schedule(1200, { game.stop()})	
-	    
+		vehiculo.cambiarEstado(roto)
+		vehiculo.estado().afectar(vehiculo)
 	}
-	method desafectar(){}
-
+	method desafectar(vehiculo)
+	{
+	 	vehiculo.cambiarEstado(chocado)
+		vehiculo.image("assets/"+vehiculo.nombre()+"/Chocado.png")
+	}
 }
 
 object roto {
-	method afectar()
-	{
-		autoRojo.image("assets/"+autoRojo.nombre()+"/Roto.png")
-		autoRojo.cambiarEstado(destruido)
-	}
 	
-	method desafectar()
+	method afectar(vehiculo)
 	{
-	 	autoRojo.cambiarEstado(chocado)
-		autoRojo.image("assets/"+autoRojo.nombre()+"/Chocado.png")
+		vehiculo.image("assets/"+vehiculo.nombre()+"/Roto.png")
+		game.addVisual(loser)
+	    game.schedule(5000, { game.stop()})
+		
 	}
-	
-
+	method desafectar(vehiculo)
+	{
+		
+	}
 }

@@ -17,6 +17,7 @@ object juego {
 		self.agregarAutos()
 		self.configurarTeclas()
 		self.configurarAcciones()
+		//game.start()
 	}
 
 	method configurarJuego() {
@@ -32,7 +33,6 @@ object juego {
 		game.addVisual(colision)
 	
 		}
-		
 	method agregarPista()
 	{
 		game.addVisual(pista)
@@ -74,3 +74,4 @@ object juego {
 
 	}
 }
+

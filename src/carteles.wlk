@@ -1,6 +1,4 @@
 import wollok.game.*
-import juego.*
-import autos.*
 
 object win {
 	const property position= game.at(5,10)

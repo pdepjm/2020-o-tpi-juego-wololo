@@ -11,24 +11,20 @@ class Obstaculo {
 		position = nuevaPosicion
 	}
 	method image() = "Decor/" + nombre +".png"
-
 	method estaFuera() = self.position().y() == 0
 	method moverse(){
 		if(self.estaFuera()){
 			camino.obstaculos().remove(self)
 			game.removeVisual(self)
-			
 		}else{
 			 self.position(self.position().down(1))
 		}
-
-  }
-  method choque(){}
+}
  
 }
 class Piedra inherits Obstaculo{
 		method choque(unAuto) {
-		unAuto.estado().afectar()
+		unAuto.destruirse()
 	}
 
 
@@ -48,17 +44,16 @@ class Aceite inherits Obstaculo{
 }
 class Barril inherits Obstaculo{
 	
-	method choque(vehiculo) {
-			vehiculo.estado().afectar()
-		}
-		
-}
+	method choque(unAuto) {
+		unAuto.explotar()
+	}
 
+}
 
 class Vida inherits Obstaculo{
 	
 	method choque(unAuto) {
-		unAuto.estado().desafectar()
+		unAuto.reparar()
 	}
 }
 class Meta
@@ -76,3 +71,5 @@ class Meta
 		
 		}
 }
+
+
