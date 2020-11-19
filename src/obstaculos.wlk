@@ -11,32 +11,22 @@ class Obstaculo {
 		position = nuevaPosicion
 	}
 	method image() = "Decor/" + nombre +".png"
-<<<<<<< HEAD
-	method estaFuera() = self.position().y() < 0
-	
-	method controlarObstaculo(){
-		if(self.estaFuera()){
-			game.removeVisual(self)
-			game.clear()
-			}
-	}
-	
-=======
+
 	method estaFuera() = self.position().y() == 0
 	method moverse(){
 		if(self.estaFuera()){
 			camino.obstaculos().remove(self)
 			game.removeVisual(self)
+			
 		}else{
 			 self.position(self.position().down(1))
 		}
 }
->>>>>>> branch 'master' of https://github.com/pdepjm/2020-o-tpi-juego-wololo.git
  
 }
 class Piedra inherits Obstaculo{
 		method choque(unAuto) {
-		unAuto.destruirse()
+		unAuto.estado().afectar(unAuto)
 	}
 
 
@@ -50,14 +40,14 @@ class Planta inherits Obstaculo{
 class Aceite inherits Obstaculo{
 	
 	method choque(unAuto) {
-		unAuto.perderControl()
+		unAuto.estado().afectar(unAuto)
 	}
 
 }
 class Barril inherits Obstaculo{
 	
 	method choque(unAuto) {
-		unAuto.explotar()
+		unAuto.estado().afectar(unAuto)
 	}
 
 }
@@ -65,7 +55,7 @@ class Barril inherits Obstaculo{
 class Vida inherits Obstaculo{
 	
 	method choque(unAuto) {
-		unAuto.reparar()
+		unAuto.estado().desafectar(unAuto)
 	}
 }
 class Meta

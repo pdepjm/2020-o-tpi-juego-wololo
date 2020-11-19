@@ -1,11 +1,12 @@
 import wollok.game.*
 import escenario.*
 import estadosAuto.*
+import carteles.*
 
 
 class Vehiculo{
 	var posicion
-	var estado = nuevo
+	var property estado = nuevo
 	var imagen
 	var nombre 
 	method nombre() = nombre
@@ -25,58 +26,21 @@ class Vehiculo{
 			posicion = nuevaPosicion
 		}
 	}
+		method gana(){
+		game.schedule(1500, { game.stop()})
+		game.addVisual(win)
+	}
 }
 
 object autoRojo inherits Vehiculo {
 		
-<<<<<<< HEAD
-		self.cambiarEstado(estado.proximoEstado())	
-		self.controlChoques()
-		
-
-=======
 	method configurar(){
 	posicion = game.at(10, 2)
-	imagen = "assets/AutoRojo/AutoNuevo.png"
+	imagen = "assets/AutoRojo/Nuevo.png"
 	nombre = "AutoRojo"
 	estado= nuevo
 	}
-	
-	method destruirse() {	
-		estado.afectar(self)
->>>>>>> branch 'master' of https://github.com/pdepjm/2020-o-tpi-juego-wololo.git
-	}
-	
-	method explotar(){
-        roto.afectar(self)
-	}
-	method reparar()
-	{
-		estado.desafectar(self)
-	}
-	
-	method gana(){
-		game.say(self,"¡¡Ganaste!!")
-		game.schedule(500, { game.stop()})
-	}
-	
-<<<<<<< HEAD
-	method controlChoques(){
 
-		if (estado == autoRoto) 
-		{
-			//game.say(self,"Te queda 1 vidas")
-			game.say(self,"Perdiste")
-			game.schedule(5000, { game.stop()})
-		}
-	} 
-	method detenerse(){
-		
-	}
-=======
-	method detenerse(){}
->>>>>>> branch 'master' of https://github.com/pdepjm/2020-o-tpi-juego-wololo.git
-	method noAfectar(){}
 	method perderControl() {
 		const posiciones = [pista.limiteIz(),pista.limiteDer()]
 		const nuevaPosicion = posiciones.get(0.randomUpTo(2))
@@ -107,29 +71,11 @@ object colision {
 object camion inherits Vehiculo {
 	method configurar(){
 		posicion = game.at(10, 2)
-		imagen = "camion.png"
+		imagen = "assets/camion.png"
 		nombre="Camion"
 		estado=nuevo
 	}
-
-
-	method destruirse() {
-	}
-	
-	
-	method explotar(){
-        estado.afectar(self)
-	}
-	method reparar(){
-	}
-	
-	method gana(){
-		game.say(self,"¡¡Ganaste!!")
-		game.schedule(500, { game.stop()})
-	}
-	
-	method detenerse(){}
-	method noAfectar(){}
+	method pederControl(){}
 }
 
 

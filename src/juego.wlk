@@ -17,7 +17,6 @@ object juego {
 		self.agregarAutos()
 		self.configurarTeclas()
 		self.configurarAcciones()
-		//game.start()
 	}
 
 	method configurarJuego() {
@@ -33,6 +32,7 @@ object juego {
 		game.addVisual(colision)
 	
 		}
+		
 	method agregarPista()
 	{
 		game.addVisual(pista)
@@ -70,13 +70,7 @@ object juego {
 		
 		})
 		game.onTick(100, "Mover obstaculos", {pista.moverObstaculos()})	
-<<<<<<< HEAD
-		game.onTick(100, "Eliminar Obstaculos", {obstaculo => obstaculo.controlarObstaculo()})	
-		game.onCollideDo(colision, {objeto=>objeto.choque(autoRojo)})
-		
-=======
 		game.onCollideDo(colision, {objeto=>objeto.choque(vehiculo) pista.obstaculos().remove(objeto) game.removeVisual(objeto)})
 
->>>>>>> branch 'master' of https://github.com/pdepjm/2020-o-tpi-juego-wololo.git
 	}
 }

@@ -1,9 +1,5 @@
 import wollok.game.*
 import obstaculos.*
-<<<<<<< HEAD
-=======
-import obstaculos.*
->>>>>>> branch 'master' of https://github.com/pdepjm/2020-o-tpi-juego-wololo.git
 import escenario.*
 
 class Creador {
