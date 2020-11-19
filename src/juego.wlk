@@ -65,8 +65,8 @@ object juego {
 			colisionesMeta.forEach({colisionMet=>colisionMet.position(colisionMet.position().down(1))})
 		} )
 		game.onTick(1000, "crear obstaculo", {
-			pista.crearObstaculo()
-			
+			if(not(meta.visible()))
+				pista.crearObstaculo()		
 		
 		})
 		game.onTick(100, "Mover obstaculos", {pista.moverObstaculos()})	
