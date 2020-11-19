@@ -21,7 +21,9 @@ class Obstaculo {
 		}else{
 			 self.position(self.position().down(1))
 		}
-}
+
+  }
+  method choque(){}
  
 }
 class Piedra inherits Obstaculo{
@@ -46,8 +48,13 @@ class Aceite inherits Obstaculo{
 }
 class Barril inherits Obstaculo{
 	
-	method choque(unAuto) {
-		unAuto.estado().afectar(unAuto)
+	method choque(vehiculo) {
+		if(not vehiculo.esAuto()){
+			vehiculo.estado().afectarDistinto(vehiculo)
+		}else {
+			vehiculo.estado().afectar(vehiculo)
+		}
+		
 	}
 
 }

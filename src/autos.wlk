@@ -26,6 +26,13 @@ class Vehiculo{
 			posicion = nuevaPosicion
 		}
 	}
+	
+		method perderControl() {
+		const posiciones = [pista.limiteIz(),pista.limiteDer()]
+		const nuevaPosicion = posiciones.get(0.randomUpTo(2))
+		posicion = game.at(nuevaPosicion, 2)
+	}
+	
 		method gana(){
 		game.schedule(1500, { game.stop()})
 		game.addVisual(win)
@@ -40,12 +47,8 @@ object autoRojo inherits Vehiculo {
 	nombre = "AutoRojo"
 	estado= nuevo
 	}
-
-	method perderControl() {
-		const posiciones = [pista.limiteIz(),pista.limiteDer()]
-		const nuevaPosicion = posiciones.get(0.randomUpTo(2))
-		posicion = game.at(nuevaPosicion, 2)
-	}
+	
+	method esAuto() = true
 	
 }
 
@@ -71,43 +74,10 @@ object colision {
 object camion inherits Vehiculo {
 	method configurar(){
 		posicion = game.at(10, 2)
-<<<<<<< HEAD
-		imagen = "assets/camion.png"
-=======
 		imagen = "assets/Camion/Nuevo.png"
->>>>>>> branch 'master' of https://github.com/pdepjm/2020-o-tpi-juego-wololo.git
 		nombre="Camion"
 		estado=nuevo
 	}
-<<<<<<< HEAD
-	method pederControl(){}
-=======
+    method esAuto() = false
 
-
-	method destruirse() {
-	}
-	
-	
-	method explotar(){
-        estado.afectar(self)
-	}
-	method reparar(){
-	}
-	
-	method gana(){
-		game.say(self,"¡¡Ganaste!!")
-		game.schedule(500, { game.stop()})
-	}
-	
-	method detenerse(){}
-	method noAfectar(){}
-	method perderControl() {
-		const posiciones = [pista.limiteIz(),pista.limiteDer()]
-		const nuevaPosicion = posiciones.get(0.randomUpTo(2))
-		posicion = game.at(nuevaPosicion, 2)
-	}
->>>>>>> branch 'master' of https://github.com/pdepjm/2020-o-tpi-juego-wololo.git
 }
-
-
-
