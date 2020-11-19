@@ -2,21 +2,24 @@ import wollok.game.*
 import carteles.*
 import autos.*
 
-object nuevo {
+
+object impecable{
 	
 		method afectar()
 	{
-		camion.cambiarEstado(destruido)
-		camion.image("assets/"+camion.nombre()+"/PrimerCoque.png")
+		camion.cambiarEstado(chocado)
 	}
-	
+	method desafectar(){}
+
 }
 
-object destruido{
-		method afectar(vehiculo)
+object chocado {
+		method afectar()
 	{
 		game.addVisual(loser)
 	    game.schedule(1200, { game.stop()})	
 	    
 	}
+	method desafectar(){}
+
 }

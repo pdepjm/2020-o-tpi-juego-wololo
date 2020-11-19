@@ -2,6 +2,7 @@ import wollok.game.*
 import escenario.*
 import estadosAuto.*
 import carteles.*
+import estadosCamion.*
 
 
 class Vehiculo{
@@ -48,8 +49,6 @@ object autoRojo inherits Vehiculo {
 	estado= nuevo
 	}
 	
-	method esAuto() = true
-	
 }
 
 object colision {
@@ -76,8 +75,8 @@ object camion inherits Vehiculo {
 		posicion = game.at(10, 2)
 		imagen = "assets/Camion/Nuevo.png"
 		nombre="Camion"
-		estado=nuevo
+		estado = impecable
 	}
-    method esAuto() = false
+ 
 
 }
