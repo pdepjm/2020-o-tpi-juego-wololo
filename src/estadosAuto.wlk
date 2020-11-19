@@ -1,44 +1,45 @@
 import wollok.game.*
 import carteles.*
+import autos.*
 
 object nuevo{
-	method afectar(vehiculo)
+	method afectar()
 	{
-		vehiculo.cambiarEstado(primerChoque)
-		vehiculo.image("assets/"+vehiculo.nombre()+"/PrimerCoque.png")
+		autoRojo.cambiarEstado(primerChoque)
+		autoRojo.image("assets/"+autoRojo.nombre()+"/PrimerCoque.png")
 	}
-	
+	method desafectar(){}
 }
 
 object primerChoque{
-	method afectar(vehiculo)
+	method afectar()
 	{
-		vehiculo.cambiarEstado(chocado)
-		vehiculo.image("assets/"+vehiculo.nombre()+"/Chocado.png")
+		autoRojo.cambiarEstado(chocado)
+		autoRojo.image("assets/"+autoRojo.nombre()+"/Chocado.png")
 	}
-	method desafectar(vehiculo)
+	method desafectar()
 	{
-	 	vehiculo.cambiarEstado(nuevo)
-		vehiculo.image("assets/"+vehiculo.nombre()+"/Nuevo.png")
+	 	autoRojo.cambiarEstado(nuevo)
+		autoRojo.image("assets/"+autoRojo.nombre()+"/Nuevo.png")
 	}
 }
 
 object chocado{
-	method afectar(vehiculo)
+	method afectar()
 	{
-		vehiculo.cambiarEstado(destruido)
-		vehiculo.image("assets/"+vehiculo.nombre()+"/Destruido.png")
+		autoRojo.cambiarEstado(roto)
+		autoRojo.image("assets/"+autoRojo.nombre()+"/Destruido.png")
 	}
-	method desafectar(vehiculo)
+	method desafectar()
 	{
-	 	vehiculo.cambiarEstado(primerChoque)
-		vehiculo.image("assets/"+vehiculo.nombre()+"/PrimerCoque.png")
+	 	autoRojo.cambiarEstado(primerChoque)
+		autoRojo.image("assets/"+autoRojo.nombre()+"/PrimerCoque.png")
 
 	}
 }
 
 object destruido {
-	method afectar(vehiculo)
+	method afectar()
 	{
 		//vehiculo.cambiarEstado(roto)
 		//vehiculo.estado().afecta(vehiculo)
@@ -46,20 +47,21 @@ object destruido {
 	    game.schedule(1200, { game.stop()})	
 	    
 	}
+	method desafectar(){}
 
 }
 
 object roto {
-	method afectar(vehiculo)
+	method afectar()
 	{
-		vehiculo.image("assets/"+vehiculo.nombre()+"/Roto.png")
-		vehiculo.cambiarEstado(destruido)
+		autoRojo.image("assets/"+autoRojo.nombre()+"/Roto.png")
+		autoRojo.cambiarEstado(destruido)
 	}
 	
-	method desafectar(vehiculo)
+	method desafectar()
 	{
-	 	vehiculo.cambiarEstado(chocado)
-		vehiculo.image("assets/"+vehiculo.nombre()+"/Chocado.png")
+	 	autoRojo.cambiarEstado(chocado)
+		autoRojo.image("assets/"+autoRojo.nombre()+"/Chocado.png")
 	}
 	
 

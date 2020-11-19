@@ -28,7 +28,7 @@ class Obstaculo {
 }
 class Piedra inherits Obstaculo{
 		method choque(unAuto) {
-		unAuto.estado().afectar(unAuto)
+		unAuto.estado().afectar()
 	}
 
 
@@ -42,14 +42,14 @@ class Planta inherits Obstaculo{
 class Aceite inherits Obstaculo{
 	
 	method choque(unAuto) {
-		unAuto.estado().afectar(unAuto)
+		unAuto.perderControl()
 	}
 
 }
 class Barril inherits Obstaculo{
 	
 	method choque(vehiculo) {
-			vehiculo.estado().afectar(vehiculo)
+			vehiculo.estado().afectar()
 		}
 		
 }
@@ -58,7 +58,7 @@ class Barril inherits Obstaculo{
 class Vida inherits Obstaculo{
 	
 	method choque(unAuto) {
-		unAuto.estado().desafectar(unAuto)
+		unAuto.estado().desafectar()
 	}
 }
 class Meta

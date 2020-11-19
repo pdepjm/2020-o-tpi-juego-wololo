@@ -1,12 +1,13 @@
 import wollok.game.*
 import carteles.*
+import autos.*
 
 object nuevo {
 	
-		method afectar(vehiculo)
+		method afectar()
 	{
-		vehiculo.cambiarEstado(destruido)
-		vehiculo.image("assets/"+vehiculo.nombre()+"/PrimerCoque.png")
+		camion.cambiarEstado(destruido)
+		camion.image("assets/"+camion.nombre()+"/PrimerCoque.png")
 	}
 	
 }
